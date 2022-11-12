@@ -1,7 +1,5 @@
-import { Scene } from "@ge/typings/Scene"
+import { Scene } from "@ge/Scene"
 
-export const registerCanvas = (canvas: HTMLCanvasElement): Scene | null => {
-	const ctx = canvas.getContext("2d")
-
-	return ctx
+export const registerCanvas = (canvas: HTMLCanvasElement): Scene => {
+	return new Scene(canvas)
 }

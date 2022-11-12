@@ -1,5 +1,5 @@
 import { CanvasContext } from "@ge/CanvasContext"
-import { Scene } from "@ge/typings/Scene"
+import { Scene } from "@ge/Scene"
 
 import { useContext, useEffect } from "react"
 

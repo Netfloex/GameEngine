@@ -1,4 +1,4 @@
-import { Scene } from "@ge/typings/Scene"
+import { Scene } from "@ge/Scene"
 
 import { createContext } from "react"
 

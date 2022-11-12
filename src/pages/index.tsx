@@ -7,10 +7,8 @@ import { useWindowSize } from "src/hooks/useWindowSize"
 
 const RenderComponent: FC = () => {
 	useScene((scene) => {
-		scene.moveTo(0, 0)
-		scene.lineTo(200, 100)
-		scene.strokeStyle = "white"
-		scene.stroke()
+		scene.objects.push({ x: 10, y: 10, radius: 10 })
+		scene.objects.push({ x: 100, y: 100, radius: 100 })
 	})
 
 	return null
