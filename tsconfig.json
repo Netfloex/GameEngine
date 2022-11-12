@@ -1,27 +1,32 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
-		"downlevelIteration": true,
+		"outDir": "./dist",
+		"target": "ES5",
 		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
 		"incremental": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"noEmit": true,
-		"outDir": "dist",
-		"paths": {
-			"@lib": ["src/lib"],
-			"@typings/*": ["src/typings/*"],
-			"@utils": ["src/utils"]
-		},
+		"lib": ["ES2019.Array", "DOM"],
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ES5",
-		"typeRoots": ["src/typings", "node_modules/@types"]
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"paths": {
+			"@lib/*": ["src/lib/*"],
+			"@typings/*": ["src/typings/*"],
+			"@utils/*": ["src/utils/*"],
+			"@styles/*": ["src/styles/*"],
+			"@components": ["src/components"],
+			"@hooks": ["src/server/utils/hooks"],
+
+			"@seo-default": ["src/next-seo.config"]
+		},
+		"allowJs": true
 	},
-	"ts-node": {
-		"compilerOptions": {
-			"module": "commonjs"
-		}
-	}
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
 }

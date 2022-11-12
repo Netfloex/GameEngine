@@ -6,6 +6,14 @@
 	"tabWidth": 4,
 	"printWidth": 80,
 	"arrowParens": "always",
-	"importOrder": ["(@lib/.*)|(@utils/.*)", "@models/.*", "@configs/.*"],
+	"importOrder": [
+		".*scss$",
+		"^\\w+",
+		"^@components.*",
+		"^@hooks$",
+		"^(@lib)|(@utils)|(@server)$",
+		"^@formats$",
+		"^@seo-default$"
+	],
 	"importOrderSeparation": true
 }

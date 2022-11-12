@@ -1,7 +1,8 @@
 **
 
+!/next.config.js
 !/package.json
-!/rollup.config.ts
 !/src/**
 !/tsconfig.json
 !/yarn.lock
+!/public/manifest.json

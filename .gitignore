@@ -1,2 +1,10 @@
-node_modules
-dist
+node_modules/
+dist/
+store.json
+.env.local
+.next
+docker-compose.yml
+public/sw.js*
+public/workbox-*.js*
+cache
+*.log

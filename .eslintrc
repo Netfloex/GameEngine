@@ -1,29 +1,16 @@
 {
-	"env": {
-		"browser": false,
-		"es2021": true,
-		"node": true
-	},
 	"extends": [
-		"eslint:recommended",
+		"plugin:@next/next/recommended",
+		"next/core-web-vitals",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:import/recommended",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:css-modules/recommended"
 	],
-	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"ecmaVersion": 12,
-		"sourceType": "module"
-	},
-	"plugins": ["@typescript-eslint", "import"],
-	"ignorePatterns": ["/dist"],
+	"plugins": ["@typescript-eslint", "css-modules"],
 	"rules": {
-		"@typescript-eslint/explicit-function-return-type": ["error"],
 		"@typescript-eslint/no-non-null-assertion": 0,
 		"@typescript-eslint/no-unused-vars": ["error"],
-		"no-unused-vars": "off",
-		"import/first": ["error"],
-		"import/newline-after-import": ["error"],
-		"import/no-unresolved": "off"
-	}
+		"@typescript-eslint/explicit-function-return-type": ["error"]
+	},
+	"ignorePatterns": ["/cache", "/dist", "/next.config.js"]
 }
