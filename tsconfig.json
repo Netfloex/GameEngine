@@ -23,6 +23,8 @@
 			"@components": ["src/components"],
 			"@hooks": ["src/server/utils/hooks"],
 
+			"@gameEngine": ["src/gameEngine"],
+			"@ge/*": ["src/gameEngine/*"],
 			"@seo-default": ["src/next-seo.config"]
 		},
 		"allowJs": true
