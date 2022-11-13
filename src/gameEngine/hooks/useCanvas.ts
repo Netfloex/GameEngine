@@ -1,19 +1,19 @@
 import { Scene } from "@ge/Scene"
 import { registerCanvas } from "@ge/registerCanvas"
 
-import { RefObject, useEffect, useState, useRef } from "react"
+import { MutableRefObject, RefObject, useEffect, useRef } from "react"
 
 export const useCanvas = (
 	canvasRef: RefObject<HTMLCanvasElement>,
-): Scene | null => {
-	const [scene, setScene] = useState<Scene | null>(null)
+): MutableRefObject<Scene | null> => {
+	const sceneRef = useRef<Scene | null>(null)
 
 	const animationFrameRef = useRef<number | null>(null)
 
 	useEffect(() => {
 		if (canvasRef.current) {
 			const scene = registerCanvas(canvasRef.current)
-			setScene(scene)
+			sceneRef.current = scene
 
 			const frame = (): void => {
 				scene.tick()
@@ -30,5 +30,5 @@ export const useCanvas = (
 		}
 	}, [canvasRef])
 
-	return scene
+	return sceneRef
 }

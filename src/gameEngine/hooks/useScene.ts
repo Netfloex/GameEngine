@@ -7,9 +7,9 @@ type Destructor = () => void
 type useSceneCallbackEffect = (scene: Scene) => void | Destructor
 
 export const useScene = (callback: useSceneCallbackEffect): void => {
-	const scene = useContext(CanvasContext)
+	const sceneRef = useContext(CanvasContext)
 
 	useEffect(() => {
-		if (scene) return callback(scene)
-	}, [scene, callback])
+		if (sceneRef.current) return callback(sceneRef.current)
+	}, [sceneRef, callback])
 }

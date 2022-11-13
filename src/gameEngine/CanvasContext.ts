@@ -1,5 +1,7 @@
 import { Scene } from "@ge/Scene"
 
-import { createContext } from "react"
+import { createContext, createRef, MutableRefObject } from "react"
 
-export const CanvasContext = createContext<Scene | null>(null)
+export const CanvasContext = createContext<MutableRefObject<Scene | null>>(
+	createRef(),
+)

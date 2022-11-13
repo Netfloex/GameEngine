@@ -10,7 +10,7 @@
 		".*scss$",
 		"^\\w+",
 		"^@components.*",
-		"^@hooks$",
+		"^@hooks|@ge/hooks.*$",
 		"^(@lib)|(@utils)|(@server)$",
 		"^@formats$",
 		"^@seo-default$"

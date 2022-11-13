@@ -1,21 +1,18 @@
-import { CanvasContext } from "@ge/CanvasContext"
 import { Scene } from "@ge/Scene"
 
-import { useContext, useEffect } from "react"
+import { useScene } from "@ge/hooks/useScene"
 
 type Destructor = () => void
 type useFrameCallbackEffect = (scene: Scene) => void | Destructor
 
 export const useFrame = (callback: useFrameCallbackEffect): void => {
-	const scene = useContext(CanvasContext)
+	useScene((scene) => {
+		scene.on("tick", callback)
+		console.log("register tick")
 
-	useEffect(() => {
-		if (scene) {
-			scene.on("tick", callback)
-
-			return () => {
-				scene.off("tick", callback)
-			}
+		return () => {
+			scene.off("tick", callback)
+			console.log("unregister tick")
 		}
-	}, [scene, callback])
+	})
 }
