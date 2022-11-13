@@ -21,7 +21,7 @@
 			"@utils/*": ["src/utils/*"],
 			"@styles/*": ["src/styles/*"],
 			"@components": ["src/components"],
-			"@hooks": ["src/server/utils/hooks"],
+			"@hooks": ["src/hooks"],
 
 			"@gameEngine": ["src/gameEngine"],
 			"@ge/*": ["src/gameEngine/*"],
