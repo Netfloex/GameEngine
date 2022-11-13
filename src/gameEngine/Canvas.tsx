@@ -1,9 +1,10 @@
 import { CanvasContext } from "@ge/CanvasContext"
-import { FCC } from "@typings/FCC"
 
 import { CanvasHTMLAttributes, DetailedHTMLProps, useRef } from "react"
 
 import { useCanvas } from "@ge/hooks/useCanvas"
+
+import { FCC } from "@typings/FCC"
 
 export const Canvas: FCC<
 	DetailedHTMLProps<

@@ -12,7 +12,7 @@
 		"^@components.*",
 		"^@hooks|@ge/hooks.*$",
 		"^(@lib)|(@utils)|(@server)$",
-		"^@formats$",
+		"^@.*typings.*$",
 		"^@seo-default$"
 	],
 	"importOrderSeparation": true

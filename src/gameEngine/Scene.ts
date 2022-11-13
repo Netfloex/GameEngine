@@ -1,8 +1,4 @@
-interface RenderObject {
-	x: number
-	y: number
-	radius: number
-}
+import { RenderObject } from "@ge/renderObjects/RenderObject"
 
 interface EventListeners {
 	tick: Array<(scene: Scene) => void>
@@ -24,9 +20,7 @@ export class Scene {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
 		this.objects.forEach((obj) => {
-			this.ctx.beginPath()
-			this.ctx.arc(obj.x, obj.y, obj.radius, 0, 2 * Math.PI)
-			this.ctx.fill()
+			obj.render(this.ctx)
 		})
 	}
 
