@@ -3,6 +3,7 @@ body {
 	background-color: #222;
 	color: white;
 	color-scheme: dark;
+	overflow-y: hidden;
 }
 
 /* stylelint-disable-next-line selector-id-pattern */
@@ -11,5 +12,5 @@ body,
 #__next,
 canvas {
 	width: 100%;
-	height: calc(100% - 7px);
+	height: 100%;
 }

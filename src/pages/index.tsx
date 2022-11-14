@@ -14,6 +14,15 @@ const RenderComponent: FC = () => {
 		}),
 	)
 
+	const mouseCircle = useRef(
+		new Circle({
+			position: { x: 100, y: 100 },
+			radius: 10,
+			color: "white",
+			stroke: true,
+		}),
+	)
+
 	const velocityX = useRef(10)
 
 	useScene((scene) => {
@@ -25,10 +34,13 @@ const RenderComponent: FC = () => {
 			}),
 		)
 
-		scene.objects.push(sideBounceCircle.current)
+		scene.objects.push(sideBounceCircle.current, mouseCircle.current)
 	})
 
 	useFrame((scene) => {
+		mouseCircle.current.position.x = scene.mouse.worldPosition.x
+		mouseCircle.current.position.y = scene.mouse.worldPosition.y
+
 		sideBounceCircle.current.position.x += velocityX.current
 		if (sideBounceCircle.current.position.x > scene.width) {
 			velocityX.current *= -1

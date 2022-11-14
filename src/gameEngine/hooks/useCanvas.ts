@@ -28,6 +28,8 @@ export const useCanvas = (
 			return () => {
 				if (animationFrameRef.current)
 					cancelAnimationFrame(animationFrameRef.current)
+
+				scene.destroy()
 			}
 		}
 	}, [canvasRef, cameraRef])
