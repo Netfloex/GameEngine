@@ -32,8 +32,13 @@ const RenderComponent: FC = () => {
 		sideBounceCircle.current.position.x += velocityX.current
 		if (sideBounceCircle.current.position.x > scene.width) {
 			velocityX.current *= -1
+			sideBounceCircle.current.stroke = true
+			sideBounceCircle.current.strokeWidth = Math.floor(
+				Math.random() * 100,
+			)
 		} else if (sideBounceCircle.current.position.x < 0) {
 			velocityX.current *= -1
+			sideBounceCircle.current.stroke = false
 		}
 	})
 

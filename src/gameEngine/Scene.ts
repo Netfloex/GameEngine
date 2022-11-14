@@ -1,5 +1,6 @@
 import { BasicEventEmitter } from "@ge/BasicEventEmitter"
-import { RenderObject } from "@ge/renderObjects/RenderObject"
+
+import { RenderObject } from "@ge/typings/RenderObject"
 
 type EventListeners = {
 	tick: Array<(scene: Scene) => void>
