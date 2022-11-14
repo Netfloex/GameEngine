@@ -1,10 +1,12 @@
 import { Scene } from "@ge/Scene"
-import { registerCanvas } from "@ge/registerCanvas"
+import { createScene } from "@ge/registerCanvas"
+import { Camera } from "@ge/renderObjects/Camera"
 
 import { MutableRefObject, RefObject, useEffect, useRef } from "react"
 
 export const useCanvas = (
 	canvasRef: RefObject<HTMLCanvasElement>,
+	cameraRef: MutableRefObject<Camera>,
 ): MutableRefObject<Scene | null> => {
 	const sceneRef = useRef<Scene | null>(null)
 
@@ -12,7 +14,7 @@ export const useCanvas = (
 
 	useEffect(() => {
 		if (canvasRef.current) {
-			const scene = registerCanvas(canvasRef.current)
+			const scene = createScene(canvasRef.current, cameraRef.current)
 			sceneRef.current = scene
 
 			const frame = (): void => {
@@ -28,7 +30,7 @@ export const useCanvas = (
 					cancelAnimationFrame(animationFrameRef.current)
 			}
 		}
-	}, [canvasRef])
+	}, [canvasRef, cameraRef])
 
 	return sceneRef
 }

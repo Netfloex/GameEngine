@@ -1,3 +1,5 @@
+import { Camera } from "@ge/renderObjects/Camera"
+
 import { Colorable } from "@ge/typings/Colorable"
 import { Positionable } from "@ge/typings/Positionable"
 import { RenderObject } from "@ge/typings/RenderObject"
@@ -14,13 +16,19 @@ export class Circle implements CircleOpts, RenderObject {
 	public stroke
 	public strokeWidth
 
-	render(ctx: CanvasRenderingContext2D): void {
+	render(ctx: CanvasRenderingContext2D, camera: Camera): void {
 		ctx.beginPath()
 		ctx.fillStyle = this.color
 		ctx.strokeStyle = this.color
 
 		ctx.lineWidth = this.strokeWidth
-		ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI)
+		ctx.arc(
+			this.position.x - camera.position.x,
+			this.position.y - camera.position.y,
+			this.radius,
+			0,
+			2 * Math.PI,
+		)
 
 		if (!this.stroke) ctx.fill()
 		else ctx.stroke()

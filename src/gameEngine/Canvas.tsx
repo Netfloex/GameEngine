@@ -1,4 +1,5 @@
 import { CanvasContext } from "@ge/CanvasContext"
+import { Camera } from "@ge/renderObjects/Camera"
 
 import { CanvasHTMLAttributes, DetailedHTMLProps, useRef } from "react"
 
@@ -7,14 +8,19 @@ import { useCanvas } from "@ge/hooks/useCanvas"
 import { FCC } from "@typings/FCC"
 
 export const Canvas: FCC<
-	DetailedHTMLProps<
+	{
+		camera?: Camera
+	} & DetailedHTMLProps<
 		CanvasHTMLAttributes<HTMLCanvasElement>,
 		HTMLCanvasElement
 	>
-> = ({ children, ...canvasProps }) => {
+> = ({ children, camera, ...canvasProps }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
+	const cameraRef = useRef<Camera>(
+		camera ?? new Camera({ position: { x: 0, y: 0 } }),
+	)
 
-	const sceneRef = useCanvas(canvasRef)
+	const sceneRef = useCanvas(canvasRef, cameraRef)
 
 	return (
 		<>
