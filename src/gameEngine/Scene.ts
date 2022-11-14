@@ -1,15 +1,17 @@
+import { BasicEventEmitter } from "@ge/BasicEventEmitter"
 import { RenderObject } from "@ge/renderObjects/RenderObject"
 
-interface EventListeners {
+type EventListeners = {
 	tick: Array<(scene: Scene) => void>
 }
 
-export class Scene {
+export class Scene extends BasicEventEmitter<EventListeners> {
 	private canvas: HTMLCanvasElement
 	private ctx: CanvasRenderingContext2D
 	public objects: RenderObject[] = []
 
 	constructor(canvas: HTMLCanvasElement) {
+		super()
 		this.canvas = canvas
 		this.ctx = canvas.getContext("2d")!
 	}
@@ -17,7 +19,7 @@ export class Scene {
 	public tick(): void {
 		this.emit("tick", this)
 
-		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+		this.ctx.clearRect(0, 0, this.width, this.height)
 
 		this.objects.forEach((obj) => {
 			obj.render(this.ctx)
@@ -34,35 +36,5 @@ export class Scene {
 
 	public get width(): number {
 		return this.canvas.width
-	}
-
-	/* 
-		Event Listeners
-	*/
-
-	private eventListeners: EventListeners = { tick: [] }
-
-	private emit<T extends keyof EventListeners>(
-		eventName: T,
-		...data: Parameters<EventListeners[T][0]>
-	): void {
-		// eslint-disable-next-line prefer-spread
-		this.eventListeners[eventName].forEach((cb) => cb.apply(null, data))
-	}
-
-	public on<T extends keyof EventListeners>(
-		eventName: T,
-		listener: EventListeners[T][0],
-	): void {
-		this.eventListeners[eventName].push(listener)
-	}
-
-	public off<T extends keyof EventListeners>(
-		eventName: T,
-		listener: EventListeners[T][0],
-	): void {
-		const index = this.eventListeners[eventName].indexOf(listener)
-
-		if (index > -1) this.eventListeners[eventName].splice(index, 1)
 	}
 }
