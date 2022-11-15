@@ -1,5 +1,5 @@
 import { Scene } from "@ge/Scene"
-import { createScene } from "@ge/registerCanvas"
+import { createScene } from "@ge/createScene"
 
 import { MutableRefObject, RefObject, useEffect, useRef } from "react"
 

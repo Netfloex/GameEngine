@@ -1,4 +1,4 @@
-import { Canvas, Circle, useFrame, useScene } from "@gameEngine"
+import { Canvas, Circle, Position, useFrame, useScene } from "@gameEngine"
 
 import { NextPage } from "next"
 import { FC, useRef } from "react"
@@ -8,7 +8,7 @@ import { useWindowSize } from "@hooks"
 const RenderComponent: FC = () => {
 	const sideBounceCircle = useRef(
 		new Circle({
-			position: { x: 100, y: 100 },
+			position: new Position(100, 100),
 			radius: 50,
 			color: "red",
 		}),
@@ -16,7 +16,7 @@ const RenderComponent: FC = () => {
 
 	const mouseCircle = useRef(
 		new Circle({
-			position: { x: 100, y: 100 },
+			position: new Position(),
 			radius: 10,
 			color: "white",
 			stroke: true,
@@ -28,8 +28,8 @@ const RenderComponent: FC = () => {
 	useScene((scene) => {
 		scene.objects.push(
 			new Circle({
-				position: { x: 10, y: 10 },
-				radius: 5,
+				position: new Position(500, 500),
+				radius: 10,
 				color: "white",
 			}),
 		)
@@ -38,8 +38,7 @@ const RenderComponent: FC = () => {
 	})
 
 	useFrame((scene) => {
-		mouseCircle.current.position.x = scene.mouse.worldPosition.x
-		mouseCircle.current.position.y = scene.mouse.worldPosition.y
+		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
 
 		sideBounceCircle.current.position.x += velocityX.current
 		if (sideBounceCircle.current.position.x > scene.width) {

@@ -17,9 +17,7 @@ export const Canvas: FCC<
 	>
 > = ({ children, camera, ...canvasProps }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
-	const cameraRef = useRef<Camera>(
-		camera ?? new Camera({ position: { x: 0, y: 0 } }),
-	)
+	const cameraRef = useRef<Camera>(camera ?? new Camera())
 
 	const sceneRef = useCanvas(canvasRef, cameraRef)
 

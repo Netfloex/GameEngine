@@ -1,8 +1,9 @@
-import { Circle } from "./renderObjects/Circle"
+export { Position } from "@ge/classes/Position"
 
-export { useCanvas } from "./hooks/useCanvas"
-export { useScene } from "./hooks/useScene"
-export { useFrame } from "./hooks/useFrame"
+export { Circle } from "@ge/renderObjects/Circle"
 
-export { Circle }
-export { Canvas } from "./Canvas"
+export { useCanvas } from "@ge/hooks/useCanvas"
+export { useScene } from "@ge/hooks/useScene"
+export { useFrame } from "@ge/hooks/useFrame"
+
+export { Canvas } from "@ge/Canvas"

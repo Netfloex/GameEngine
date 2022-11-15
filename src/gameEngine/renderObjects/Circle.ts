@@ -1,4 +1,5 @@
 import { Camera } from "@ge/classes/Camera"
+import { Position } from "@ge/classes/Position"
 
 import { Colorable } from "@ge/typings/Colorable"
 import { Positionable } from "@ge/typings/Positionable"
@@ -16,15 +17,20 @@ export class Circle implements CircleOpts, RenderObject {
 	public stroke
 	public strokeWidth
 
+	private tempPosition = new Position()
+
 	render(ctx: CanvasRenderingContext2D, camera: Camera): void {
 		ctx.beginPath()
 		ctx.fillStyle = this.color
 		ctx.strokeStyle = this.color
 
 		ctx.lineWidth = this.strokeWidth
+
+		this.tempPosition.copyFrom(this.position).subtract(camera.position)
+
 		ctx.arc(
-			this.position.x - camera.position.x,
-			this.position.y - camera.position.y,
+			this.tempPosition.x,
+			this.tempPosition.y,
 			this.radius,
 			0,
 			2 * Math.PI,

@@ -1,4 +1,4 @@
-import { Position } from "@ge/typings/Position"
+import { Position } from "@ge/classes/Position"
 
 export interface Positionable {
 	position: Position
