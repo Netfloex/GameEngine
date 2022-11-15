@@ -7,8 +7,9 @@ export class Mouse implements Positionable {
 	private camera: Camera
 
 	public position = new Position()
-	private tempWorldPosition = new Position()
+	public button = 0
 
+	private tempWorldPosition = new Position()
 	get worldPosition(): Position {
 		this.tempWorldPosition
 			.copyFrom(this.position)

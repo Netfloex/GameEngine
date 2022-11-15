@@ -23,8 +23,10 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		this.mouse = new Mouse(camera)
 		this.ctx = canvas.getContext("2d")!
 
-		this.onPointerMove = this.onPointerMove.bind(this)
-		canvas.addEventListener("pointermove", this.onPointerMove)
+		this.onPointerEvent = this.onPointerEvent.bind(this)
+		canvas.addEventListener("pointermove", this.onPointerEvent)
+		canvas.addEventListener("pointerdown", this.onPointerEvent)
+		canvas.addEventListener("pointerup", this.onPointerEvent)
 	}
 
 	public tick(): void {
@@ -49,12 +51,15 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		return this.canvas.width
 	}
 
-	private onPointerMove(e: PointerEvent): void {
+	private onPointerEvent(e: PointerEvent): void {
 		this.mouse.position.x = e.clientX
 		this.mouse.position.y = e.clientY
+		this.mouse.button = e.buttons
 	}
 
 	public destroy(): void {
-		this.canvas.removeEventListener("pointermove", this.onPointerMove)
+		this.canvas.removeEventListener("pointermove", this.onPointerEvent)
+		this.canvas.removeEventListener("pointerdown", this.onPointerEvent)
+		this.canvas.removeEventListener("pointerup", this.onPointerEvent)
 	}
 }

@@ -40,6 +40,8 @@ const RenderComponent: FC = () => {
 	useFrame((scene) => {
 		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
 
+		mouseCircle.current.color = scene.mouse.button ? "green" : "white"
+
 		sideBounceCircle.current.position.x += velocityX.current
 		if (sideBounceCircle.current.position.x > scene.width) {
 			velocityX.current *= -1
