@@ -1,8 +1,9 @@
 import { Scene } from "@ge/Scene"
 import { createScene } from "@ge/registerCanvas"
-import { Camera } from "@ge/renderObjects/Camera"
 
 import { MutableRefObject, RefObject, useEffect, useRef } from "react"
+
+import { Camera } from "@ge/classes/Camera"
 
 export const useCanvas = (
 	canvasRef: RefObject<HTMLCanvasElement>,

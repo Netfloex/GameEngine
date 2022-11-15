@@ -10,6 +10,7 @@
 		".*scss$",
 		"^\\w+",
 		"^@components.*",
+		"^@ge/classes/.*$",
 		"^@hooks|@ge/hooks.*$",
 		"^(@lib)|(@utils)|(@server)$",
 		"^@.*typings.*$",

@@ -1,7 +1,8 @@
 import { CanvasContext } from "@ge/CanvasContext"
-import { Camera } from "@ge/renderObjects/Camera"
 
 import { CanvasHTMLAttributes, DetailedHTMLProps, useRef } from "react"
+
+import { Camera } from "@ge/classes/Camera"
 
 import { useCanvas } from "@ge/hooks/useCanvas"
 

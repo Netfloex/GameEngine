@@ -1,6 +1,6 @@
-import { BasicEventEmitter } from "@ge/BasicEventEmitter"
-import { Camera } from "@ge/renderObjects/Camera"
-import { Mouse } from "@ge/renderObjects/Mouse"
+import { BasicEventEmitter } from "@ge/classes/BasicEventEmitter"
+import { Camera } from "@ge/classes/Camera"
+import { Mouse } from "@ge/classes/Mouse"
 
 import { RenderObject } from "@ge/typings/RenderObject"
 

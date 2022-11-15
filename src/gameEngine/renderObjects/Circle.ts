@@ -1,4 +1,4 @@
-import { Camera } from "@ge/renderObjects/Camera"
+import { Camera } from "@ge/classes/Camera"
 
 import { Colorable } from "@ge/typings/Colorable"
 import { Positionable } from "@ge/typings/Positionable"
