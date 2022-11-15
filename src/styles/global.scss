@@ -3,14 +3,9 @@ body {
 	background-color: #222;
 	color: white;
 	color-scheme: dark;
-	overflow-y: hidden;
 }
 
-/* stylelint-disable-next-line selector-id-pattern */
-html,
-body,
-#__next,
 canvas {
-	width: 100%;
-	height: 100%;
+	position: absolute;
+	border: 10px solid #4caf50;
 }

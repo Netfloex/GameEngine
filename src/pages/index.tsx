@@ -40,7 +40,7 @@ const RenderComponent: FC = () => {
 	useFrame((scene) => {
 		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
 
-		mouseCircle.current.color = scene.mouse.button ? "green" : "white"
+		mouseCircle.current.color = scene.mouse.button ? "#4CAF50" : "white"
 
 		sideBounceCircle.current.position.x += velocityX.current
 		if (sideBounceCircle.current.position.x > scene.width) {
@@ -60,10 +60,15 @@ const RenderComponent: FC = () => {
 
 const Page: NextPage = () => {
 	const size = useWindowSize()
+	const margin = 40
 
 	return (
 		<>
-			<Canvas width={size.width} height={size.height}>
+			<Canvas
+				style={{ margin }}
+				width={(size.width ?? 0) - margin * 2}
+				height={(size.height ?? 0) - margin * 2}
+			>
 				<RenderComponent />
 			</Canvas>
 		</>
