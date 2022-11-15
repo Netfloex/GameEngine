@@ -11,9 +11,7 @@ export class Mouse implements Positionable {
 
 	private tempWorldPosition = new Position()
 	get worldPosition(): Position {
-		this.tempWorldPosition
-			.copyFrom(this.position)
-			.subtract(this.camera.position)
+		this.tempWorldPosition.copyFrom(this.position).add(this.camera.position)
 		return this.tempWorldPosition
 	}
 

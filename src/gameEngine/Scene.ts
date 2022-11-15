@@ -19,7 +19,9 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 	public objects: RenderObject[] = []
 	public camera: Camera
+
 	public mouse: Mouse
+	public keyboard: Record<string, boolean> = {}
 
 	constructor(canvas: HTMLCanvasElement, camera: Camera) {
 		super()
@@ -32,6 +34,10 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		canvas.addEventListener("pointermove", this.onPointerEvent)
 		canvas.addEventListener("pointerdown", this.onPointerEvent)
 		canvas.addEventListener("pointerup", this.onPointerEvent)
+
+		this.onKeyboardEvent = this.onKeyboardEvent.bind(this)
+		addEventListener("keydown", this.onKeyboardEvent)
+		addEventListener("keyup", this.onKeyboardEvent)
 
 		this.calculateCanvasOffsets()
 	}
@@ -83,9 +89,20 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		this.mouse.button = e.buttons
 	}
 
+	private onKeyboardEvent(e: KeyboardEvent): void {
+		if (e.type == "keydown") {
+			this.keyboard[e.key] = true
+		} else {
+			delete this.keyboard[e.key]
+		}
+	}
+
 	public destroy(): void {
 		this.canvas.removeEventListener("pointermove", this.onPointerEvent)
 		this.canvas.removeEventListener("pointerdown", this.onPointerEvent)
 		this.canvas.removeEventListener("pointerup", this.onPointerEvent)
+
+		removeEventListener("keydown", this.onKeyboardEvent)
+		removeEventListener("keyup", this.onKeyboardEvent)
 	}
 }

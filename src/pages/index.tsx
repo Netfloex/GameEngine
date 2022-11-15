@@ -28,7 +28,22 @@ const RenderComponent: FC = () => {
 	useScene((scene) => {
 		scene.objects.push(
 			new Circle({
-				position: new Position(500, 500),
+				position: new Position(0, 0),
+				radius: 10,
+				color: "white",
+			}),
+			new Circle({
+				position: new Position(scene.width, 0),
+				radius: 10,
+				color: "white",
+			}),
+			new Circle({
+				position: new Position(0, scene.height),
+				radius: 10,
+				color: "white",
+			}),
+			new Circle({
+				position: new Position(scene.width, scene.height),
 				radius: 10,
 				color: "white",
 			}),
@@ -52,6 +67,19 @@ const RenderComponent: FC = () => {
 		} else if (sideBounceCircle.current.position.x < 0) {
 			velocityX.current *= -1
 			sideBounceCircle.current.stroke = false
+		}
+
+		if (scene.keyboard["a"]) {
+			scene.camera.position.x -= 5
+		}
+		if (scene.keyboard["d"]) {
+			scene.camera.position.x += 5
+		}
+		if (scene.keyboard["s"]) {
+			scene.camera.position.y += 5
+		}
+		if (scene.keyboard["w"]) {
+			scene.camera.position.y -= 5
 		}
 	})
 
