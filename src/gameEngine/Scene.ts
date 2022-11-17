@@ -1,8 +1,9 @@
 import { BasicEventEmitter } from "@ge/classes/BasicEventEmitter"
 import { Camera } from "@ge/classes/Camera"
 import { Mouse } from "@ge/classes/Mouse"
+import { RenderObject } from "@ge/classes/RenderObject"
 
-import { RenderObject } from "@ge/typings/RenderObject"
+import { RenderObjectType } from "@ge/typings/RenderObjectType"
 import { Size } from "@ge/typings/Size"
 
 type EventListeners = {
@@ -17,7 +18,7 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 	private border: Size = { width: 0, height: 0 }
 	private rect: DOMRect | undefined
 
-	public objects: RenderObject[] = []
+	public objects: Array<RenderObject & RenderObjectType> = []
 	public camera: Camera
 
 	public mouse: Mouse

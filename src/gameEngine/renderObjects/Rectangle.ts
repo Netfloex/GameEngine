@@ -4,17 +4,20 @@ import { RenderObject } from "@ge/classes/RenderObject"
 import { Colorable } from "@ge/typings/Colorable"
 import { Positionable } from "@ge/typings/Positionable"
 import { RenderObjectType } from "@ge/typings/RenderObjectType"
+import { Sizable } from "@ge/typings/Sizable"
 import { Strokable } from "@ge/typings/Strokable"
 
-export interface CircleOpts extends Strokable, Positionable, Colorable {
-	radius: number
-}
+export interface RectangleOpts
+	extends Strokable,
+		Positionable,
+		Colorable,
+		Sizable {}
 
-export class Circle
+export class Rectangle
 	extends RenderObject
-	implements CircleOpts, RenderObjectType
+	implements RectangleOpts, RenderObjectType
 {
-	public radius
+	public size
 	public color
 	public stroke
 	public strokeWidth
@@ -23,14 +26,14 @@ export class Circle
 		const position = this.getPosition(camera)
 
 		this.strokeOrFill(ctx, () => {
-			ctx.arc(position.x, position.y, this.radius, 0, 2 * Math.PI)
+			ctx.rect(position.x, position.y, this.size.width, this.size.height)
 		})
 	}
 
-	constructor(opts: CircleOpts) {
+	constructor(opts: RectangleOpts) {
 		super(opts)
 
-		this.radius = opts.radius
+		this.size = opts.size
 		this.color = opts.color
 		this.stroke = opts.stroke ?? false
 		this.strokeWidth = opts.strokeWidth ?? 1

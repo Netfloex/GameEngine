@@ -1,4 +1,5 @@
 import { Canvas, Circle, Position, useFrame, useScene } from "@gameEngine"
+import { Rectangle } from "@ge/renderObjects/Rectangle"
 
 import { NextPage } from "next"
 import { FC, useRef } from "react"
@@ -46,6 +47,12 @@ const RenderComponent: FC = () => {
 				position: new Position(scene.width, scene.height),
 				radius: 10,
 				color: "white",
+			}),
+
+			new Rectangle({
+				position: new Position(100, 200),
+				size: { height: 100, width: 50 },
+				color: "cornflowerblue",
 			}),
 		)
 
