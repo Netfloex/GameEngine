@@ -23,7 +23,7 @@ export class Rectangle
 	public strokeWidth
 
 	render(ctx: CanvasRenderingContext2D, camera: Camera): void {
-		const position = this.getPosition(camera)
+		const position = this.getScreenPosition(camera)
 
 		this.strokeOrFill(ctx, () => {
 			ctx.rect(position.x, position.y, this.size.width, this.size.height)

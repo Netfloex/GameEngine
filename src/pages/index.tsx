@@ -1,5 +1,11 @@
-import { Canvas, Circle, Position, useFrame, useScene } from "@gameEngine"
-import { Rectangle } from "@ge/renderObjects/Rectangle"
+import {
+	Canvas,
+	Circle,
+	Position,
+	useFrame,
+	useScene,
+	Rectangle,
+} from "@gameEngine"
 
 import { NextPage } from "next"
 import { FC, useRef } from "react"

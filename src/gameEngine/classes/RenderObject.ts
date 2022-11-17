@@ -35,7 +35,7 @@ export class RenderObject implements RenderObjectOpts {
 		}
 	}
 
-	public getPosition(camera: Camera): Position {
+	public getScreenPosition(camera: Camera): Position {
 		return this.tempPosition
 			.copyFrom(this.position)
 			.subtract(camera.position)

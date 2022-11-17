@@ -20,7 +20,7 @@ export class Circle
 	public strokeWidth
 
 	render(ctx: CanvasRenderingContext2D, camera: Camera): void {
-		const position = this.getPosition(camera)
+		const position = this.getScreenPosition(camera)
 
 		this.strokeOrFill(ctx, () => {
 			ctx.arc(position.x, position.y, this.radius, 0, 2 * Math.PI)
