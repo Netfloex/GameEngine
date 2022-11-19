@@ -13,14 +13,8 @@ export interface RectangleOpts
 		Colorable,
 		Sizable {}
 
-export class Rectangle
-	extends RenderObject
-	implements RectangleOpts, RenderObjectType
-{
+export class Rectangle extends RenderObject implements RenderObjectType {
 	public size
-	public color
-	public stroke
-	public strokeWidth
 
 	render(ctx: CanvasRenderingContext2D, camera: Camera): void {
 		const position = this.getScreenPosition(camera)
@@ -35,7 +29,5 @@ export class Rectangle
 
 		this.size = opts.size
 		this.color = opts.color
-		this.stroke = opts.stroke ?? false
-		this.strokeWidth = opts.strokeWidth ?? 1
 	}
 }

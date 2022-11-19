@@ -45,6 +45,6 @@ export class RenderObject implements RenderObjectOpts {
 		this.position = opts.position
 		this.color = opts.color
 		this.stroke = opts.stroke
-		this.strokeWidth = opts.strokeWidth
+		this.strokeWidth = opts.stroke ? opts.strokeWidth ?? 1 : 0
 	}
 }

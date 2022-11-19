@@ -10,14 +10,8 @@ export interface CircleOpts extends Strokable, Positionable, Colorable {
 	radius: number
 }
 
-export class Circle
-	extends RenderObject
-	implements CircleOpts, RenderObjectType
-{
+export class Circle extends RenderObject implements RenderObjectType {
 	public radius
-	public color
-	public stroke
-	public strokeWidth
 
 	render(ctx: CanvasRenderingContext2D, camera: Camera): void {
 		const position = this.getScreenPosition(camera)
@@ -31,8 +25,5 @@ export class Circle
 		super(opts)
 
 		this.radius = opts.radius
-		this.color = opts.color
-		this.stroke = opts.stroke ?? false
-		this.strokeWidth = opts.strokeWidth ?? 1
 	}
 }

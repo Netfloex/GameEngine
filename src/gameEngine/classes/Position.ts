@@ -39,4 +39,12 @@ export class Position {
 	public clone(): Position {
 		return new Position(this.x, this.y)
 	}
+
+	public squaredDistanceTo(other: Position): number {
+		return Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2)
+	}
+
+	public distanceTo(other: Position): number {
+		return Math.sqrt(this.squaredDistanceTo(other))
+	}
 }

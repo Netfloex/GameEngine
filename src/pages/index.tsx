@@ -2,10 +2,12 @@ import {
 	Canvas,
 	Circle,
 	Position,
+	Rectangle,
 	useFrame,
 	useScene,
-	Rectangle,
 } from "@gameEngine"
+import { circleRectangleCollision } from "@ge/utils/collision/circleRectangle"
+import { rectangleRectangleCollision } from "@ge/utils/collision/rectangleRectangle"
 
 import { NextPage } from "next"
 import { FC, useRef } from "react"
@@ -23,14 +25,31 @@ const RenderComponent: FC = () => {
 
 	const mouseCircle = useRef(
 		new Circle({
-			position: new Position(),
+			position: new Position(-100, -100),
 			radius: 10,
 			color: "white",
 			stroke: true,
+			strokeWidth: 2,
 		}),
 	)
 
-	const velocityX = useRef(10)
+	const collideRectangle = useRef(
+		new Rectangle({
+			position: new Position(300, 20),
+			size: { width: 30, height: 280 },
+			color: "white",
+		}),
+	)
+
+	const movingRectangle = useRef(
+		new Rectangle({
+			position: new Position(100, 280),
+			size: { width: 30, height: 160 },
+			color: "red",
+		}),
+	)
+
+	const velocityX = useRef(4)
 
 	useScene((scene) => {
 		scene.objects.push(
@@ -54,28 +73,53 @@ const RenderComponent: FC = () => {
 				radius: 10,
 				color: "white",
 			}),
-
-			new Rectangle({
-				position: new Position(100, 200),
-				size: { height: 100, width: 50 },
-				color: "cornflowerblue",
-			}),
 		)
 
-		scene.objects.push(sideBounceCircle.current, mouseCircle.current)
+		scene.objects.push(
+			collideRectangle.current,
+			sideBounceCircle.current,
+			mouseCircle.current,
+			movingRectangle.current,
+		)
 	})
 
 	useFrame((scene) => {
 		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
 
-		mouseCircle.current.color = scene.mouse.button ? "#4CAF50" : "white"
+		const collide = circleRectangleCollision(
+			mouseCircle.current,
+			collideRectangle.current,
+		)
+
+		mouseCircle.current.color = collide
+			? "#4CAF50"
+			: scene.mouse.button
+			? "red"
+			: "white"
+		mouseCircle.current.stroke = true
+
+		sideBounceCircle.current.color = circleRectangleCollision(
+			sideBounceCircle.current,
+			collideRectangle.current,
+		)
+			? "green"
+			: "red"
+
+		movingRectangle.current.color = rectangleRectangleCollision(
+			collideRectangle.current,
+			movingRectangle.current,
+		)
+			? "green"
+			: "red"
 
 		sideBounceCircle.current.position.x += velocityX.current
+		movingRectangle.current.position.x += velocityX.current
+
 		if (sideBounceCircle.current.position.x > scene.width) {
 			velocityX.current *= -1
 			sideBounceCircle.current.stroke = true
 			sideBounceCircle.current.strokeWidth = Math.floor(
-				Math.random() * 100,
+				Math.random() * 30,
 			)
 		} else if (sideBounceCircle.current.position.x < 0) {
 			velocityX.current *= -1
