@@ -2,10 +2,11 @@ import { Canvas, Circle, Position, Rectangle, useScene } from "@gameEngine"
 
 import { NextPage } from "next"
 import { FC, MutableRefObject, useRef } from "react"
-import { BouncingCircle } from "src/pages/components/BouncingCircle"
-import { BouncingRectangle } from "src/pages/components/BouncingRectangle"
-import { Camera } from "src/pages/components/Camera"
-import { MouseCircle } from "src/pages/components/MouseCircle"
+
+import { BouncingCircle } from "@components/BouncingCircle"
+import { BouncingRectangle } from "@components/BouncingRectangle"
+import { Camera } from "@components/Camera"
+import { MouseCircle } from "@components/MouseCircle"
 
 import { useWindowSize } from "@hooks"
 
