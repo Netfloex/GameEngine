@@ -2,41 +2,23 @@
 	"name": "gameengine",
 	"version": "1.0.0",
 	"license": "MIT",
-	"main": ".next/standalone/server",
+	"main": "packages/examples/.next/standalone/server",
+	"private": true,
 	"scripts": {
-		"build": "next build",
-		"export": "next export",
-		"dev": "next dev",
-		"start": "next start",
-		"stylelint": "stylelint **/*.scss",
-		"typescript": "tsc",
-		"lint": "eslint . --ext .ts --ext .tsx --ext json",
+		"typescript": "yarn --cwd packages/examples typescript && yarn --cwd packages/gameEngine typescript",
+		"lint": "yarn --cwd packages/examples lint && yarn --cwd packages/gameEngine lint",
+		"stylelint": "yarn --cwd packages/examples stylelint",
 		"prettier": "prettier . --check",
 		"prepare": "husky install"
 	},
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^3.4.0",
 		"@types/node": "^18.11.9",
-		"@types/react": "^18.0.25",
-		"@typescript-eslint/eslint-plugin": "^5.42.1",
-		"@typescript-eslint/parser": "^5.42.1",
-		"eslint": "^8.27.0",
-		"eslint-config-next": "^13.0.3",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-css-modules": "^2.11.0",
-		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-prettier": "^4.2.1",
 		"husky": "^8.0.2",
-		"next": "^13.0.3",
-		"next-seo": "^5.14.1",
-		"prettier": "^2.7.1",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"sass": "^1.56.1",
-		"stylelint": "^14.14.1",
-		"stylelint-config-idiomatic-order": "^9.0.0",
-		"stylelint-config-standard-scss": "^6.1.0",
-		"stylelint-scss": "^4.3.0",
-		"typescript": "^4.8.4"
-	}
+		"prettier": "^2.7.1"
+	},
+	"workspaces": [
+		"packages/gameEngine",
+		"packages/examples"
+	]
 }

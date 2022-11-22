@@ -1,3 +1,4 @@
 .next
 cache
 public/*.js
+dist

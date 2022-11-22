@@ -1,0 +1,19 @@
+{
+	"extends": "../../tsconfig.json",
+
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@classes/*": ["src/classes/*"],
+			"@hooks/*": ["src/react/hooks/*"],
+			"@react/*": ["src/react/*"],
+			"@renderObjects/*": ["src/renderObjects/*"],
+			"@typings/*": ["src/typings/*"],
+			"@utils/*": ["src/utils/*"]
+		},
+		"outDir": "dist",
+		"tsBuildInfoFile": "dist/.tsbuildinfo",
+		"jsx": "react",
+		"declaration": true
+	}
+}

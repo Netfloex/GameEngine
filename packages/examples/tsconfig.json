@@ -1,0 +1,28 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@lib/*": ["src/lib/*"],
+			"@typings/*": ["src/typings/*"],
+			"@utils/*": ["src/utils/*"],
+			"@styles/*": ["src/styles/*"],
+			"@components/*": ["src/components/*"],
+			"@hooks": ["src/hooks"],
+			"@seo-default": ["src/next-seo.config"]
+		},
+		"outDir": "dist",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": false
+	},
+	"references": [
+		{
+			"path": "../gameEngine"
+		}
+	],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
+}

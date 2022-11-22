@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env.local
+.next
+docker-compose.yml
+out
+public/sw.js*
+public/workbox-*.js*

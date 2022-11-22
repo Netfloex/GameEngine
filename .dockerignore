@@ -1,8 +1,15 @@
 **
 
-!/next.config.js
-!/package.json
-!/src/**
+!next.config.js
+!package.json
+!/packages/gameEngine/src**
+!/packages/gameEngine/package.json
+!/packages/gameEngine/rollup.config.js
+!/packages/gameEngine/tsconfig.json
+!/packages/examples/src**
+!/packages/examples/package.json
+!/packages/examples/tsconfig.json
+!/packages/examples/next.config.js
 !/tsconfig.json
+!/tsconfig.project.json
 !/yarn.lock
-!/public/manifest.json
