@@ -14,6 +14,9 @@ jobs:
             - name: Setup yarn and install dependencies
               uses: netfloex/actions/yarn@master
 
+            - name: Build gameengine package and types
+              run: yarn --cwd packages/gameEngine build
+
             - name: Check Types
               run: yarn typescript
 
