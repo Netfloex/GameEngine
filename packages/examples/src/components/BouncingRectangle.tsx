@@ -1,10 +1,4 @@
-import {
-	Position,
-	Rectangle,
-	useFrame,
-	useScene,
-	rectangleRectangleCollision,
-} from "gameengine"
+import { Position, Rectangle, useFrame, useScene } from "gameengine"
 import { FC, MutableRefObject, useRef } from "react"
 
 export const BouncingRectangle: FC<{
@@ -25,12 +19,10 @@ export const BouncingRectangle: FC<{
 	})
 
 	useFrame((scene) => {
-		bouncingRectangle.current.color = rectangleRectangleCollision(
-			bouncingRectangle.current,
-			collideRectangle.current,
-		)
-			? "green"
-			: "red"
+		bouncingRectangle.current.color =
+			bouncingRectangle.current.isCollidingWith(collideRectangle.current)
+				? "green"
+				: "red"
 
 		bouncingRectangle.current.position.x += velocityX.current
 

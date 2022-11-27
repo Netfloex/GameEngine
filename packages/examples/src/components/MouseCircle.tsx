@@ -1,16 +1,7 @@
-import {
-	Circle,
-	Position,
-	Rectangle,
-	useFrame,
-	useScene,
-	circleRectangleCollision,
-} from "gameengine"
-import { FC, MutableRefObject, useRef } from "react"
+import { Circle, Position, useFrame, useScene } from "gameengine"
+import { FC, useRef } from "react"
 
-export const MouseCircle: FC<{
-	collideRectangle: MutableRefObject<Rectangle>
-}> = ({ collideRectangle }) => {
+export const MouseCircle: FC = () => {
 	const mouseCircle = useRef(
 		new Circle({
 			position: new Position(-100, -100),
@@ -28,9 +19,10 @@ export const MouseCircle: FC<{
 	useFrame((scene) => {
 		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
 
-		const collide = circleRectangleCollision(
-			mouseCircle.current,
-			collideRectangle.current,
+		const collide = scene.objects.find(
+			(object) =>
+				object !== mouseCircle.current &&
+				mouseCircle.current.isCollidingWith(object),
 		)
 
 		mouseCircle.current.color = collide

@@ -1,11 +1,4 @@
-import {
-	Circle,
-	Position,
-	Rectangle,
-	useFrame,
-	useScene,
-	circleRectangleCollision,
-} from "gameengine"
+import { Circle, Position, Rectangle, useFrame, useScene } from "gameengine"
 import { FC, MutableRefObject, useRef } from "react"
 
 export const BouncingCircle: FC<{
@@ -25,8 +18,7 @@ export const BouncingCircle: FC<{
 	})
 
 	useFrame((scene) => {
-		bouncingCircle.current.color = circleRectangleCollision(
-			bouncingCircle.current,
+		bouncingCircle.current.color = bouncingCircle.current.isCollidingWith(
 			collideRectangle.current,
 		)
 			? "green"

@@ -64,7 +64,7 @@ const Page: NextPage = () => {
 				<RenderComponent collideRectangle={collideRectangle} />
 				<BouncingCircle collideRectangle={collideRectangle} />
 				<BouncingRectangle collideRectangle={collideRectangle} />
-				<MouseCircle collideRectangle={collideRectangle} />
+				<MouseCircle />
 			</Canvas>
 		</>
 	)

@@ -9,8 +9,4 @@ export { useFrame } from "@hooks/useFrame"
 
 export { type Size } from "@typings/Size"
 
-export { rectangleRectangleCollision } from "@utils/collision/rectangleRectangle"
-export { circleCircleCollision } from "@utils/collision/circleCircle"
-export { circleRectangleCollision } from "@utils/collision/circleRectangle"
-
 export { Canvas } from "@react/Canvas"

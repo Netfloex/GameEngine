@@ -1,9 +1,8 @@
 import { BasicEventEmitter } from "@classes/BasicEventEmitter"
 import { Camera } from "@classes/Camera"
 import { Mouse } from "@classes/Mouse"
-import { RenderObject } from "@classes/RenderObject"
 
-import { RenderObjectType } from "@typings/RenderObjectType"
+import { RenderObjects } from "@typings/RenderObjects"
 import { Size } from "@typings/Size"
 
 type EventListeners = {
@@ -18,7 +17,7 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 	private border: Size = { width: 0, height: 0 }
 	private rect: DOMRect | undefined
 
-	public objects: Array<RenderObject & RenderObjectType> = []
+	public objects: Array<RenderObjects> = []
 	public camera: Camera
 
 	public mouse: Mouse
@@ -48,9 +47,9 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 		this.ctx.clearRect(0, 0, this.width, this.height)
 
-		this.objects.forEach((obj) => {
+		for (const obj of this.objects) {
 			obj.render(this.ctx, this.camera)
-		})
+		}
 	}
 
 	/* 
