@@ -27,11 +27,11 @@ export const BouncingCircle: FC<{
 		bouncingCircle.current.position.x += velocityX.current
 
 		if (bouncingCircle.current.position.x > scene.width) {
-			velocityX.current *= -1
+			velocityX.current = -1 * Math.abs(velocityX.current)
 			bouncingCircle.current.stroke = true
 			bouncingCircle.current.strokeWidth = Math.floor(Math.random() * 30)
 		} else if (bouncingCircle.current.position.x < 0) {
-			velocityX.current *= -1
+			velocityX.current = Math.abs(velocityX.current)
 			bouncingCircle.current.stroke = false
 		}
 	})

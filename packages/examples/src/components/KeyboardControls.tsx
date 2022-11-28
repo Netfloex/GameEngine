@@ -1,7 +1,7 @@
 import { useFrame } from "gameengine"
 import type { FC } from "react"
 
-export const Camera: FC = () => {
+export const KeyboardControls: FC = () => {
 	useFrame((scene) => {
 		if (scene.keyboard["a"]) {
 			scene.camera.position.x -= 5

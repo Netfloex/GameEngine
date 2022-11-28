@@ -4,7 +4,7 @@ import { FC, MutableRefObject, useRef } from "react"
 
 import { BouncingCircle } from "@components/BouncingCircle"
 import { BouncingRectangle } from "@components/BouncingRectangle"
-import { Camera } from "@components/Camera"
+import { KeyboardControls } from "@components/KeyboardControls"
 import { MouseCircle } from "@components/MouseCircle"
 
 import { useWindowSize } from "@hooks"
@@ -60,7 +60,7 @@ const Page: NextPage = () => {
 				width={(size.width ?? 0) - margin * 2}
 				height={(size.height ?? 0) - margin * 2}
 			>
-				<Camera />
+				<KeyboardControls />
 				<RenderComponent collideRectangle={collideRectangle} />
 				<BouncingCircle collideRectangle={collideRectangle} />
 				<BouncingRectangle collideRectangle={collideRectangle} />
