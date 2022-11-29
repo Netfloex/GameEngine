@@ -2,7 +2,7 @@ import { Camera } from "@classes/Camera"
 import { CanvasContext } from "@react/CanvasContext"
 import { useCanvas } from "@react/hooks/useCanvas"
 
-import React, { CanvasHTMLAttributes, DetailedHTMLProps, useRef } from "react"
+import { CanvasHTMLAttributes, DetailedHTMLProps, useRef } from "react"
 
 import { FCC } from "@typings/FCC"
 

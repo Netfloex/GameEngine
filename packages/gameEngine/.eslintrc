@@ -8,7 +8,9 @@
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:import/recommended",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:react/recommended",
+		"plugin:react/jsx-runtime"
 	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
@@ -24,6 +26,12 @@
 		"no-unused-vars": "off",
 		"import/first": ["error"],
 		"import/newline-after-import": ["error"],
-		"import/no-unresolved": "off"
+		"import/no-unresolved": "off",
+		"react/prop-types": 0
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
 	}
 }
