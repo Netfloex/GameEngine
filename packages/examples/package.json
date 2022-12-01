@@ -4,7 +4,7 @@
 	"main": ".next/standalone/server",
 	"license": "MIT",
 	"scripts": {
-		"typescript": "tsc --noEmit",
+		"typescript": "tsc --noEmit --skipLibCheck true",
 		"build": "next build",
 		"export": "next export",
 		"dev": "next dev",

@@ -64,6 +64,10 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		return this.canvas.width
 	}
 
+	public add(...objects: RenderObjects[]): void {
+		this.objects.push(...objects)
+	}
+
 	public calculateCanvasOffsets(): void {
 		this.rect = this.canvas.getBoundingClientRect()
 

@@ -23,7 +23,7 @@ export const Canvas: FCC<
 		<>
 			<CanvasContext.Provider value={sceneRef}>
 				<canvas {...canvasProps} ref={canvasRef} />
-				{children}
+				{sceneRef.current && children}
 			</CanvasContext.Provider>
 		</>
 	)

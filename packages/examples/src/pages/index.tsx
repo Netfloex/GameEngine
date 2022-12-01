@@ -1,6 +1,13 @@
-import { Canvas, Circle, Position, Rectangle, useScene } from "gameengine"
+import {
+	Canvas,
+	Circle,
+	Position,
+	Rectangle,
+	useAddObject,
+	useScene,
+} from "gameengine"
 import { NextPage } from "next"
-import { FC, MutableRefObject, useRef } from "react"
+import { FC, MutableRefObject, useCallback, useRef } from "react"
 
 import { BouncingCircle } from "@components/BouncingCircle"
 import { BouncingRectangle } from "@components/BouncingRectangle"
@@ -12,31 +19,36 @@ import { useWindowSize } from "@hooks"
 const RenderComponent: FC<{
 	collideRectangle: MutableRefObject<Rectangle>
 }> = ({ collideRectangle }) => {
-	useScene((scene) => {
-		scene.objects.push(
-			collideRectangle.current,
-			new Circle({
-				position: new Position(0, 0),
-				radius: 10,
-				color: "white",
-			}),
-			new Circle({
-				position: new Position(scene.width, 0),
-				radius: 10,
-				color: "white",
-			}),
-			new Circle({
-				position: new Position(0, scene.height),
-				radius: 10,
-				color: "white",
-			}),
-			new Circle({
-				position: new Position(scene.width, scene.height),
-				radius: 10,
-				color: "white",
-			}),
-		)
-	})
+	const scene = useScene()
+
+	useAddObject(
+		useCallback(
+			() => [
+				collideRectangle.current,
+				new Circle({
+					position: new Position(0, 0),
+					radius: 10,
+					color: "white",
+				}),
+				new Circle({
+					position: new Position(scene.width, 0),
+					radius: 10,
+					color: "white",
+				}),
+				new Circle({
+					position: new Position(0, scene.height),
+					radius: 10,
+					color: "white",
+				}),
+				new Circle({
+					position: new Position(scene.width, scene.height),
+					radius: 10,
+					color: "white",
+				}),
+			],
+			[collideRectangle, scene.height, scene.width],
+		),
+	)
 
 	return null
 }

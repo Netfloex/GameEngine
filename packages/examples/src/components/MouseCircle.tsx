@@ -1,4 +1,4 @@
-import { Circle, Position, useFrame, useScene } from "gameengine"
+import { Circle, Position, useAddObject, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const MouseCircle: FC = () => {
@@ -12,9 +12,7 @@ export const MouseCircle: FC = () => {
 		}),
 	)
 
-	useScene((scene) => {
-		scene.objects.push(mouseCircle.current)
-	})
+	useAddObject(mouseCircle)
 
 	useFrame((scene) => {
 		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
