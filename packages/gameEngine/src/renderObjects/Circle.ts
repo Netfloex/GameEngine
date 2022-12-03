@@ -5,12 +5,12 @@ import { circleCircleCollision } from "@utils/collision/circleCircle"
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 
 import { Colorable } from "@typings/Colorable"
-import { Positionable } from "@typings/Positionable"
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
+import { StandardOptions } from "@typings/StandardOptions"
 import { Strokable } from "@typings/Strokable"
 
-export interface CircleOpts extends Strokable, Positionable, Colorable {
+export interface CircleOpts extends StandardOptions, Strokable, Colorable {
 	radius: number
 }
 
@@ -19,10 +19,11 @@ export class Circle extends RenderObject implements RenderObjectType {
 	public type = "circle" as const
 
 	public render(ctx: CanvasRenderingContext2D, camera: Camera): void {
-		const position = this.getScreenPosition(camera)
-		this.strokeOrFill(ctx, () => {
-			ctx.arc(position.x, position.y, this.radius, 0, 2 * Math.PI)
-		})
+		this.prepareRender(ctx, camera, () =>
+			this.strokeOrFill(ctx, () => {
+				ctx.arc(0, 0, this.radius, 0, 2 * Math.PI)
+			}),
+		)
 	}
 
 	public isCollidingWith(other: RenderObjects): boolean {

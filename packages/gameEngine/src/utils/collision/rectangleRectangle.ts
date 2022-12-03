@@ -7,15 +7,17 @@ export const rectangleRectangleCollision = (
 	const rectangleStroke = rectangle.strokeWidth / 2
 	const otherStroke = other.strokeWidth / 2
 
-	const rectangleHeight = rectangle.size.height + rectangleStroke
-	const rectangleWidth = rectangle.size.width + rectangleStroke
-	const otherHeight = other.size.height + otherStroke
-	const otherWidth = other.size.width + otherStroke
+	const rectangleHeight = rectangle.size.height / 2 + rectangleStroke
+	const rectangleWidth = rectangle.size.width / 2 + rectangleStroke
+
+	const otherHeight = other.size.height / 2 + otherStroke
+	const otherWidth = other.size.width / 2 + otherStroke
 
 	return (
-		other.position.x + otherWidth > rectangle.position.x &&
+		other.position.x + otherWidth > rectangle.position.x - rectangleWidth &&
 		other.position.x - otherWidth < rectangle.position.x + rectangleWidth &&
-		other.position.y + otherHeight > rectangle.position.y &&
+		other.position.y + otherHeight >
+			rectangle.position.y - rectangleHeight &&
 		other.position.y - otherHeight < rectangle.position.y + rectangleHeight
 	)
 }

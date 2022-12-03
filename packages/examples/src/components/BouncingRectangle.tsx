@@ -12,7 +12,7 @@ export const BouncingRectangle: FC<{
 		}),
 	)
 
-	const velocityX = useRef(4)
+	const velocityX = useRef(1)
 
 	useAddObject(bouncingRectangle)
 

@@ -13,6 +13,7 @@ import { BouncingCircle } from "@components/BouncingCircle"
 import { BouncingRectangle } from "@components/BouncingRectangle"
 import { KeyboardControls } from "@components/KeyboardControls"
 import { MouseCircle } from "@components/MouseCircle"
+import { RotatingSquare } from "@components/RotatingSquare"
 
 import { useWindowSize } from "@hooks"
 
@@ -59,8 +60,9 @@ const Page: NextPage = () => {
 
 	const collideRectangle = useRef(
 		new Rectangle({
-			position: new Position(300, 20),
+			position: new Position(300, 180),
 			size: { width: 30, height: 280 },
+			alpha: 0.5,
 			color: "white",
 		}),
 	)
@@ -73,9 +75,10 @@ const Page: NextPage = () => {
 				height={(size.height ?? 0) - margin * 2}
 			>
 				<KeyboardControls />
-				<RenderComponent collideRectangle={collideRectangle} />
 				<BouncingCircle collideRectangle={collideRectangle} />
 				<BouncingRectangle collideRectangle={collideRectangle} />
+				<RotatingSquare />
+				<RenderComponent collideRectangle={collideRectangle} />
 				<MouseCircle />
 			</Canvas>
 		</>

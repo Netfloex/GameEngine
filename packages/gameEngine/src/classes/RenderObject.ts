@@ -1,19 +1,42 @@
 import { Camera } from "@classes/Camera"
 import { Position } from "@classes/Position"
 
+import { Alphable } from "@typings/Alphable.d"
 import { Colorable } from "@typings/Colorable"
 import { Positionable } from "@typings/Positionable"
+import { Rotatable } from "@typings/Rotatable.d"
 import { Strokable } from "@typings/Strokable"
 
-type RenderObjectOpts = Positionable & Partial<Strokable & Colorable>
+type RenderObjectOpts = Positionable &
+	Partial<Strokable & Colorable & Rotatable & Alphable>
 
 export class RenderObject implements RenderObjectOpts {
 	public position: Position
 	public color
 	public stroke
 	public strokeWidth
+	public rotation
+	public alpha
 
 	private tempPosition = new Position()
+
+	public prepareRender(
+		ctx: CanvasRenderingContext2D,
+		camera: Camera,
+		render: () => void,
+	): void {
+		ctx.save()
+
+		ctx.globalAlpha = this.alpha
+
+		const pos = this.getScreenPosition(camera)
+		ctx.translate(pos.x, pos.y)
+		ctx.rotate(this.rotation)
+
+		render()
+
+		ctx.restore()
+	}
 
 	public strokeOrFill(
 		ctx: CanvasRenderingContext2D,
@@ -46,5 +69,7 @@ export class RenderObject implements RenderObjectOpts {
 		this.color = opts.color
 		this.stroke = opts.stroke
 		this.strokeWidth = opts.stroke ? opts.strokeWidth ?? 1 : 0
+		this.alpha = opts.alpha ?? 1
+		this.rotation = opts.rotation ?? 0
 	}
 }
