@@ -5,11 +5,10 @@ import { useScene } from "@hooks/useScene"
 import { RenderObjects } from "@typings/RenderObjects"
 
 type OptionalArray<T> = T[] | T
+type OptionalFunction<T> = T | (() => T)
 
 export const useAddObject = <
-	T extends
-		| MutableRefObject<OptionalArray<RenderObjects>>
-		| (() => OptionalArray<RenderObjects>),
+	T extends MutableRefObject<OptionalFunction<OptionalArray<RenderObjects>>>,
 >(
 	objectsGenerator: T,
 ): T => {
@@ -17,8 +16,8 @@ export const useAddObject = <
 
 	useEffect(() => {
 		const objects =
-			typeof objectsGenerator == "function"
-				? objectsGenerator()
+			typeof objectsGenerator.current == "function"
+				? objectsGenerator.current()
 				: objectsGenerator.current
 
 		scene.add(...[objects].flat())

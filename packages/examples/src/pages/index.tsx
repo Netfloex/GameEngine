@@ -7,7 +7,7 @@ import {
 	useScene,
 } from "gameengine"
 import { NextPage } from "next"
-import { FC, MutableRefObject, useCallback, useRef } from "react"
+import { FC, MutableRefObject, useRef } from "react"
 
 import { BouncingCircle } from "@components/BouncingCircle"
 import { BouncingRectangle } from "@components/BouncingRectangle"
@@ -23,32 +23,29 @@ const RenderComponent: FC<{
 	const scene = useScene()
 
 	useAddObject(
-		useCallback(
-			() => [
-				collideRectangle.current,
-				new Circle({
-					position: new Position(0, 0),
-					radius: 10,
-					color: "white",
-				}),
-				new Circle({
-					position: new Position(scene.width, 0),
-					radius: 10,
-					color: "white",
-				}),
-				new Circle({
-					position: new Position(0, scene.height),
-					radius: 10,
-					color: "white",
-				}),
-				new Circle({
-					position: new Position(scene.width, scene.height),
-					radius: 10,
-					color: "white",
-				}),
-			],
-			[collideRectangle, scene.height, scene.width],
-		),
+		useRef(() => [
+			collideRectangle.current,
+			new Circle({
+				position: new Position(0, 0),
+				radius: 10,
+				color: "white",
+			}),
+			new Circle({
+				position: new Position(scene.width, 0),
+				radius: 10,
+				color: "white",
+			}),
+			new Circle({
+				position: new Position(0, scene.height),
+				radius: 10,
+				color: "white",
+			}),
+			new Circle({
+				position: new Position(scene.width, scene.height),
+				radius: 10,
+				color: "white",
+			}),
+		]),
 	)
 
 	return null
