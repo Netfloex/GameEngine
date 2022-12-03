@@ -1,5 +1,6 @@
 import { BasicEventEmitter } from "@classes/BasicEventEmitter"
 import { Camera } from "@classes/Camera"
+import { Clock } from "@classes/Clock"
 import { Mouse } from "@classes/Mouse"
 
 import { RenderObjects } from "@typings/RenderObjects"
@@ -19,6 +20,7 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 	public objects: Array<RenderObjects> = []
 	public camera: Camera
+	public clock: Clock
 
 	public mouse: Mouse
 	public keyboard: Record<string, boolean> = {}
@@ -28,6 +30,7 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		this.canvas = canvas
 		this.camera = camera
 		this.mouse = new Mouse(camera)
+		this.clock = new Clock()
 		this.ctx = canvas.getContext("2d")!
 
 		this.onPointerEvent = this.onPointerEvent.bind(this)
@@ -44,6 +47,7 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 	public tick(): void {
 		this.emit("tick", this)
+		this.clock.setDeltaTime()
 
 		this.ctx.clearRect(0, 0, this.width, this.height)
 
