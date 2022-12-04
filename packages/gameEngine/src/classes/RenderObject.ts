@@ -8,7 +8,9 @@ import { Rotatable } from "@typings/Rotatable.d"
 import { Strokable } from "@typings/Strokable"
 
 type RenderObjectOpts = PositionableLike &
-	Partial<Strokable & Colorable & Rotatable & Alphable>
+	Partial<Strokable & Colorable & Rotatable & Alphable> & {
+		visible?: boolean
+	}
 
 export class RenderObject implements RenderObjectOpts {
 	public position: Position
@@ -17,6 +19,7 @@ export class RenderObject implements RenderObjectOpts {
 	public strokeWidth
 	public rotation
 	public alpha
+	public visible
 
 	private tempPosition = new Position(0, 0)
 
@@ -78,5 +81,6 @@ export class RenderObject implements RenderObjectOpts {
 		this.strokeWidth = opts.stroke ? opts.strokeWidth ?? 1 : 0
 		this.alpha = opts.alpha ?? 1
 		this.rotation = opts.rotation ?? 0
+		this.visible = opts.visible ?? true
 	}
 }

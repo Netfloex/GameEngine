@@ -17,11 +17,20 @@ export const MouseCircle: FC = () => {
 	useFrame((scene) => {
 		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
 
-		const collide = mouseCircle.current.isCollidingWith(
-			scene.objects.filter((o) => o !== mouseCircle.current),
+		const collision = scene.objects.find(
+			(o) =>
+				o !== mouseCircle.current &&
+				mouseCircle.current.isCollidingWith(o),
 		)
+		if (collision && scene.mouse.button) {
+			collision.visible = false
 
-		mouseCircle.current.color = collide
+			setTimeout(() => {
+				collision.visible = true
+			}, 1000)
+		}
+
+		mouseCircle.current.color = collision
 			? "#4CAF50"
 			: scene.mouse.button
 			? "red"

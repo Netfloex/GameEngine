@@ -52,7 +52,7 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		this.ctx.clearRect(0, 0, this.width, this.height)
 
 		for (const obj of this.objects) {
-			obj.render(this.ctx, this.camera)
+			if (obj.visible) obj.render(this.ctx, this.camera)
 		}
 	}
 
