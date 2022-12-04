@@ -29,6 +29,7 @@ export class Circle extends RenderObject implements RenderObjectType {
 	public isCollidingWith(other: RenderObjects): boolean {
 		switch (other.type) {
 			case "rectangle":
+			case "picture":
 				return circleRectangleCollision(this, other)
 			case "circle":
 				return circleCircleCollision(this, other)

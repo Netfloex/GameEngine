@@ -4,34 +4,42 @@ import { RenderObject } from "@classes/RenderObject"
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 import { rectangleRectangleCollision } from "@utils/collision/rectangleRectangle"
 
-import { Colorable } from "@typings/Colorable"
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
 import { Sizable } from "@typings/Sizable"
 import { StandardOptions } from "@typings/StandardOptions"
-import { Strokable } from "@typings/Strokable"
 
-export interface RectangleOpts
-	extends StandardOptions,
-		Strokable,
-		Colorable,
-		Sizable {}
+export interface PictureOpts extends StandardOptions, Sizable {
+	src: string
+}
 
-export class Rectangle extends RenderObject implements RenderObjectType {
+export class Picture extends RenderObject implements RenderObjectType {
 	public size
-	public type = "rectangle" as const
+	public type = "picture" as const
+
+	private image = new Image()
 
 	public render(ctx: CanvasRenderingContext2D, camera: Camera): void {
-		this.prepareRender(ctx, camera, () =>
-			this.strokeOrFill(ctx, () => {
-				ctx.rect(
+		this.prepareRender(ctx, camera, () => {
+			if (this.image.complete && this.image.naturalHeight !== 0) {
+				ctx.drawImage(
+					this.image,
 					-this.size.width / 2,
 					-this.size.height / 2,
 					this.size.width,
 					this.size.height,
 				)
-			}),
-		)
+			} else {
+				this.strokeOrFill(ctx, () =>
+					ctx.rect(
+						-this.size.width / 2,
+						-this.size.height / 2,
+						this.size.width,
+						this.size.height,
+					),
+				)
+			}
+		})
 	}
 
 	public isCollidingWith(other: RenderObjects): boolean {
@@ -44,10 +52,10 @@ export class Rectangle extends RenderObject implements RenderObjectType {
 		}
 	}
 
-	constructor(opts: RectangleOpts) {
-		super(opts)
+	constructor(opts: PictureOpts) {
+		super({ ...opts, color: "gray" })
 
 		this.size = opts.size
-		this.color = opts.color
+		this.image.src = opts.src
 	}
 }

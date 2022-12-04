@@ -1,11 +1,11 @@
-import { Rectangle } from "@renderObjects/Rectangle"
+import { RectangleLike } from "@typings/RectangleLike"
 
 export const rectangleRectangleCollision = (
-	rectangle: Rectangle,
-	other: Rectangle,
+	rectangle: RectangleLike,
+	other: RectangleLike,
 ): boolean => {
-	const rectangleStroke = rectangle.strokeWidth / 2
-	const otherStroke = other.strokeWidth / 2
+	const rectangleStroke = rectangle.strokeWidth ?? 0 / 2
+	const otherStroke = other.strokeWidth ?? 0 / 2
 
 	const rectangleHeight = rectangle.size.height / 2 + rectangleStroke
 	const rectangleWidth = rectangle.size.width / 2 + rectangleStroke

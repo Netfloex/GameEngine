@@ -28,8 +28,6 @@ export const RotatingSquare: FC = () => {
 	const moveSpeed = 0.05
 
 	useFrame((scene) => {
-		console.log(scene.clock.getDelta())
-
 		rectangleRef.current[0].rotation += moveSpeed
 		rectangleRef.current[1].rotation +=
 			scene.clock.getDelta() * (moveSpeed / 16)

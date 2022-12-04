@@ -11,6 +11,7 @@ import { FC, MutableRefObject, useRef } from "react"
 
 import { BouncingCircle } from "@components/BouncingCircle"
 import { BouncingRectangle } from "@components/BouncingRectangle"
+import { HamburgerPicture } from "@components/HamburgerPicture"
 import { KeyboardControls } from "@components/KeyboardControls"
 import { MouseCircle } from "@components/MouseCircle"
 import { RotatingSquare } from "@components/RotatingSquare"
@@ -76,6 +77,7 @@ const Page: NextPage = () => {
 				<BouncingRectangle collideRectangle={collideRectangle} />
 				<RotatingSquare />
 				<RenderComponent collideRectangle={collideRectangle} />
+				<HamburgerPicture />
 				<MouseCircle />
 			</Canvas>
 		</>
