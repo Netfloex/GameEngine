@@ -6,7 +6,7 @@ import { Positionable } from "@typings/optionable/Positionable"
 export class Mouse implements Positionable {
 	private camera: Camera
 
-	public position = new Position()
+	public position = new Position(NaN, NaN)
 	public button = 0
 
 	private tempWorldPosition = new Position()
