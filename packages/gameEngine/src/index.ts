@@ -1,14 +1,17 @@
+export { Camera } from "@classes/Camera"
+export { Clock } from "@classes/Clock"
+export { Mouse } from "@classes/Mouse"
 export { Position } from "@classes/Position"
+export { RenderObject } from "@classes/RenderObject"
+export { Size } from "@classes/Size"
 
 export { Circle } from "@renderObjects/Circle"
-export { Rectangle } from "@renderObjects/Rectangle"
 export { Picture } from "@renderObjects/Picture"
+export { Rectangle } from "@renderObjects/Rectangle"
 
-export { useCanvas } from "@hooks/useCanvas"
-export { useScene } from "@hooks/useScene"
-export { useFrame } from "@hooks/useFrame"
 export { useAddObject } from "@hooks/useAddObject"
-
-export { type Size } from "@typings/options/Size"
+export { useCanvas } from "@hooks/useCanvas"
+export { useFrame } from "@hooks/useFrame"
+export { useScene } from "@hooks/useScene"
 
 export { Canvas } from "@react/Canvas"

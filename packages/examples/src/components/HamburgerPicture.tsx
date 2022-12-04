@@ -5,7 +5,7 @@ export const HamburgerPicture: FC = () => {
 	const hamburger = useRef(
 		new Picture({
 			position: [400, 400],
-			size: { width: 100, height: 100 },
+			size: [100, 100],
 			src: "/hamburger.svg",
 		}),
 	)

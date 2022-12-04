@@ -5,7 +5,7 @@ export const BouncingRectangle: FC = () => {
 	const bouncingRectangle = useRef(
 		new Rectangle({
 			position: [100, 280],
-			size: { width: 30, height: 160 },
+			size: [30, 160],
 			color: "red",
 		}),
 	)

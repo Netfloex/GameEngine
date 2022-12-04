@@ -2,9 +2,9 @@ import { BasicEventEmitter } from "@classes/BasicEventEmitter"
 import { Camera } from "@classes/Camera"
 import { Clock } from "@classes/Clock"
 import { Mouse } from "@classes/Mouse"
+import { Size } from "@classes/Size"
 
 import { RenderObjects } from "@typings/RenderObjects"
-import { Size } from "@typings/options/Size"
 
 type EventListeners = {
 	tick: Array<(scene: Scene) => void>
@@ -14,8 +14,8 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 	private canvas: HTMLCanvasElement
 	private ctx: CanvasRenderingContext2D
 
-	private padding: Size = { width: 0, height: 0 }
-	private border: Size = { width: 0, height: 0 }
+	private padding = new Size()
+	private border = new Size()
 	private rect: DOMRect | undefined
 
 	public objects: Array<RenderObjects> = []

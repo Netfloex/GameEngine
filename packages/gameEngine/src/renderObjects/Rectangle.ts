@@ -1,5 +1,6 @@
 import { Camera } from "@classes/Camera"
 import { RenderObject } from "@classes/RenderObject"
+import { Size } from "@classes/Size"
 
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 import { rectangleRectangleCollision } from "@utils/collision/rectangleRectangle"
@@ -8,7 +9,7 @@ import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
 import { StandardOptions } from "@typings/StandardOptions"
 import { Colorable } from "@typings/optionable/Colorable"
-import { Sizable } from "@typings/optionable/Sizable"
+import { SizeableLike } from "@typings/optionable/Sizable"
 import { Strokable } from "@typings/optionable/Strokable"
 import { OptionalArray } from "@typings/utils/OptionalArray"
 
@@ -16,10 +17,10 @@ export interface RectangleOpts
 	extends StandardOptions,
 		Strokable,
 		Colorable,
-		Sizable {}
+		SizeableLike {}
 
 export class Rectangle extends RenderObject implements RenderObjectType {
-	public size
+	public size: Size
 	public type = "rectangle" as const
 
 	public render(ctx: CanvasRenderingContext2D, camera: Camera): void {
@@ -50,7 +51,10 @@ export class Rectangle extends RenderObject implements RenderObjectType {
 	constructor(opts: RectangleOpts) {
 		super(opts)
 
-		this.size = opts.size
+		this.size =
+			opts.size instanceof Size
+				? opts.size
+				: Reflect.construct(Size, [opts.size].flat())
 		this.color = opts.color
 	}
 }

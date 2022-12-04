@@ -7,19 +7,19 @@ export const RotatingSquare: FC = () => {
 			color: "darkorange",
 			position: [200, 200],
 			alpha: 0.5,
-			size: { width: 50, height: 50 },
+			size: [30, 60],
 		}),
 		new Rectangle({
 			color: "lightblue",
 			position: [200, 300],
 			alpha: 0.5,
-			size: { width: 50, height: 50 },
+			size: [60, 60],
 		}),
 		new Rectangle({
 			color: "darkred",
 			position: [200, 400],
 			alpha: 0.5,
-			size: { width: 50, height: 50 },
+			size: [30, 60],
 		}),
 	])
 

@@ -1,5 +1,6 @@
 import { Camera } from "@classes/Camera"
 import { RenderObject } from "@classes/RenderObject"
+import { Size } from "@classes/Size"
 
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 import { rectangleRectangleCollision } from "@utils/collision/rectangleRectangle"
@@ -7,15 +8,15 @@ import { rectangleRectangleCollision } from "@utils/collision/rectangleRectangle
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
 import { StandardOptions } from "@typings/StandardOptions"
-import { Sizable } from "@typings/optionable/Sizable"
+import { SizeableLike } from "@typings/optionable/Sizable"
 import { OptionalArray } from "@typings/utils/OptionalArray"
 
-export interface PictureOpts extends StandardOptions, Sizable {
+export interface PictureOpts extends StandardOptions, SizeableLike {
 	src: string
 }
 
 export class Picture extends RenderObject implements RenderObjectType {
-	public size
+	public size: Size
 	public type = "picture" as const
 
 	private image = new Image()
@@ -58,7 +59,10 @@ export class Picture extends RenderObject implements RenderObjectType {
 	constructor(opts: PictureOpts) {
 		super({ ...opts, color: "gray" })
 
-		this.size = opts.size
+		this.size =
+			opts.size instanceof Size
+				? opts.size
+				: Reflect.construct(Size, [opts.size].flat())
 		this.image.src = opts.src
 	}
 }
