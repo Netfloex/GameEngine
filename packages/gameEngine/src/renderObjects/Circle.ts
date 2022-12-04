@@ -5,6 +5,7 @@ import { circleCircleCollision } from "@utils/collision/circleCircle"
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 
 import { Colorable } from "@typings/Colorable"
+import { OptionalArray } from "@typings/OptionalArray"
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
 import { StandardOptions } from "@typings/StandardOptions"
@@ -26,14 +27,16 @@ export class Circle extends RenderObject implements RenderObjectType {
 		)
 	}
 
-	public isCollidingWith(other: RenderObjects): boolean {
-		switch (other.type) {
-			case "rectangle":
-			case "picture":
-				return circleRectangleCollision(this, other)
-			case "circle":
-				return circleCircleCollision(this, other)
-		}
+	public isCollidingWith(others: OptionalArray<RenderObjects>): boolean {
+		return [others].flat().some((other) => {
+			switch (other.type) {
+				case "rectangle":
+				case "picture":
+					return circleRectangleCollision(this, other)
+				case "circle":
+					return circleCircleCollision(this, other)
+			}
+		})
 	}
 
 	constructor(opts: CircleOpts) {

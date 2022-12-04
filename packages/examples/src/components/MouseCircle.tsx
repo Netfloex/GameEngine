@@ -17,10 +17,8 @@ export const MouseCircle: FC = () => {
 	useFrame((scene) => {
 		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
 
-		const collide = scene.objects.find(
-			(object) =>
-				object !== mouseCircle.current &&
-				mouseCircle.current.isCollidingWith(object),
+		const collide = mouseCircle.current.isCollidingWith(
+			scene.objects.filter((o) => o !== mouseCircle.current),
 		)
 
 		mouseCircle.current.color = collide

@@ -2,9 +2,9 @@ import { MutableRefObject, useEffect } from "react"
 
 import { useScene } from "@hooks/useScene"
 
+import { OptionalArray } from "@typings/OptionalArray"
 import { RenderObjects } from "@typings/RenderObjects"
 
-type OptionalArray<T> = T[] | T
 type OptionalFunction<T> = T | (() => T)
 
 export const useAddObject = <

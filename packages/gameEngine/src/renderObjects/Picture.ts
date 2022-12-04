@@ -4,6 +4,7 @@ import { RenderObject } from "@classes/RenderObject"
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 import { rectangleRectangleCollision } from "@utils/collision/rectangleRectangle"
 
+import { OptionalArray } from "@typings/OptionalArray"
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
 import { Sizable } from "@typings/Sizable"
@@ -42,14 +43,16 @@ export class Picture extends RenderObject implements RenderObjectType {
 		})
 	}
 
-	public isCollidingWith(other: RenderObjects): boolean {
-		switch (other.type) {
-			case "rectangle":
-			case "picture":
-				return rectangleRectangleCollision(other, this)
-			case "circle":
-				return circleRectangleCollision(other, this)
-		}
+	public isCollidingWith(others: OptionalArray<RenderObjects>): boolean {
+		return [others].flat().some((other) => {
+			switch (other.type) {
+				case "rectangle":
+				case "picture":
+					return rectangleRectangleCollision(other, this)
+				case "circle":
+					return circleRectangleCollision(other, this)
+			}
+		})
 	}
 
 	constructor(opts: PictureOpts) {

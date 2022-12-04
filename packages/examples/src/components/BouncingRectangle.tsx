@@ -1,9 +1,7 @@
 import { Position, Rectangle, useAddObject, useFrame } from "gameengine"
-import { FC, MutableRefObject, useRef } from "react"
+import { FC, useRef } from "react"
 
-export const BouncingRectangle: FC<{
-	collideRectangle: MutableRefObject<Rectangle>
-}> = ({ collideRectangle }) => {
+export const BouncingRectangle: FC = () => {
 	const bouncingRectangle = useRef(
 		new Rectangle({
 			position: new Position(100, 280),
@@ -18,7 +16,9 @@ export const BouncingRectangle: FC<{
 
 	useFrame((scene) => {
 		bouncingRectangle.current.color =
-			bouncingRectangle.current.isCollidingWith(collideRectangle.current)
+			bouncingRectangle.current.isCollidingWith(
+				scene.objects.filter((o) => o !== bouncingRectangle.current),
+			)
 				? "green"
 				: "red"
 
