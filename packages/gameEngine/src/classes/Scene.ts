@@ -50,9 +50,14 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		this.clock.setDeltaTime()
 
 		this.ctx.clearRect(0, 0, this.width, this.height)
-
 		for (const obj of this.objects) {
-			if (obj.visible) obj.render(this.ctx, this.camera)
+			if (obj.visible) {
+				if (
+					obj.isCollidingWith(this.camera.getVisibleRectangle(this))
+				) {
+					obj.render(this.ctx, this.camera)
+				}
+			}
 		}
 	}
 
