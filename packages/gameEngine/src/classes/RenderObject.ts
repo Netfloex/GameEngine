@@ -3,11 +3,11 @@ import { Position } from "@classes/Position"
 
 import { Alphable } from "@typings/Alphable.d"
 import { Colorable } from "@typings/Colorable"
-import { Positionable } from "@typings/Positionable"
+import { PositionableLike } from "@typings/Positionable"
 import { Rotatable } from "@typings/Rotatable.d"
 import { Strokable } from "@typings/Strokable"
 
-type RenderObjectOpts = Positionable &
+type RenderObjectOpts = PositionableLike &
 	Partial<Strokable & Colorable & Rotatable & Alphable>
 
 export class RenderObject implements RenderObjectOpts {
@@ -18,7 +18,7 @@ export class RenderObject implements RenderObjectOpts {
 	public rotation
 	public alpha
 
-	private tempPosition = new Position()
+	private tempPosition = new Position(0, 0)
 
 	public prepareRender(
 		ctx: CanvasRenderingContext2D,
@@ -65,7 +65,14 @@ export class RenderObject implements RenderObjectOpts {
 	}
 
 	constructor(opts: RenderObjectOpts) {
-		this.position = opts.position
+		this.position =
+			opts.position instanceof Position
+				? opts.position
+				: new Position(
+						...(Array.isArray(opts.position)
+							? opts.position
+							: [opts.position]),
+				  )
 		this.color = opts.color
 		this.stroke = opts.stroke
 		this.strokeWidth = opts.stroke ? opts.strokeWidth ?? 1 : 0

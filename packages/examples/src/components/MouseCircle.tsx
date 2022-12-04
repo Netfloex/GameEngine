@@ -1,10 +1,10 @@
-import { Circle, Position, useAddObject, useFrame } from "gameengine"
+import { Circle, useAddObject, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const MouseCircle: FC = () => {
 	const mouseCircle = useRef(
 		new Circle({
-			position: new Position(-100, -100),
+			position: [-100, -100],
 			radius: 10,
 			color: "white",
 			stroke: true,

@@ -1,23 +1,23 @@
-import { Position, Rectangle, useAddObject, useFrame } from "gameengine"
+import { Rectangle, useAddObject, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const RotatingSquare: FC = () => {
 	const rectangleRef = useRef([
 		new Rectangle({
 			color: "darkorange",
-			position: new Position(200, 200),
+			position: [200, 200],
 			alpha: 0.5,
 			size: { width: 50, height: 50 },
 		}),
 		new Rectangle({
 			color: "lightblue",
-			position: new Position(200, 300),
+			position: [200, 300],
 			alpha: 0.5,
 			size: { width: 50, height: 50 },
 		}),
 		new Rectangle({
 			color: "darkred",
-			position: new Position(200, 400),
+			position: [200, 400],
 			alpha: 0.5,
 			size: { width: 50, height: 50 },
 		}),

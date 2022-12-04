@@ -1,10 +1,10 @@
-import { Position, Rectangle, useAddObject, useFrame } from "gameengine"
+import { Rectangle, useAddObject, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const BouncingRectangle: FC = () => {
 	const bouncingRectangle = useRef(
 		new Rectangle({
-			position: new Position(100, 280),
+			position: [100, 280],
 			size: { width: 30, height: 160 },
 			color: "red",
 		}),

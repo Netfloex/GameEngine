@@ -1,5 +1,6 @@
-type PositionObject = { x: number; y: number }
-type PositionLikeArguments = [x: number, y: number] | [PositionObject] | []
+import { PositionArray, PositionObject } from "@typings/Positionable"
+
+type PositionLikeArguments = PositionArray | [PositionObject] | []
 
 export class Position {
 	x = 0
