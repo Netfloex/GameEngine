@@ -4,13 +4,13 @@ import { RenderObject } from "@classes/RenderObject"
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 import { rectangleRectangleCollision } from "@utils/collision/rectangleRectangle"
 
-import { Colorable } from "@typings/Colorable"
-import { OptionalArray } from "@typings/OptionalArray"
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
-import { Sizable } from "@typings/Sizable"
 import { StandardOptions } from "@typings/StandardOptions"
-import { Strokable } from "@typings/Strokable"
+import { Colorable } from "@typings/optionable/Colorable"
+import { Sizable } from "@typings/optionable/Sizable"
+import { Strokable } from "@typings/optionable/Strokable"
+import { OptionalArray } from "@typings/utils/OptionalArray"
 
 export interface RectangleOpts
 	extends StandardOptions,

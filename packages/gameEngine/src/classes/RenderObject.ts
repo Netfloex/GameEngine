@@ -1,11 +1,11 @@
 import { Camera } from "@classes/Camera"
 import { Position } from "@classes/Position"
 
-import { Alphable } from "@typings/Alphable.d"
-import { Colorable } from "@typings/Colorable"
-import { PositionableLike } from "@typings/Positionable"
-import { Rotatable } from "@typings/Rotatable.d"
-import { Strokable } from "@typings/Strokable"
+import { Alphable } from "@typings/optionable/Alphable"
+import { Colorable } from "@typings/optionable/Colorable"
+import { PositionableLike } from "@typings/optionable/Positionable"
+import { Rotatable } from "@typings/optionable/Rotatable"
+import { Strokable } from "@typings/optionable/Strokable"
 
 type RenderObjectOpts = PositionableLike &
 	Partial<Strokable & Colorable & Rotatable & Alphable> & {

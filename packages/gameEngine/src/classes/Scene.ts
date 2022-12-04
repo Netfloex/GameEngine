@@ -4,7 +4,7 @@ import { Clock } from "@classes/Clock"
 import { Mouse } from "@classes/Mouse"
 
 import { RenderObjects } from "@typings/RenderObjects"
-import { Size } from "@typings/Size"
+import { Size } from "@typings/options/Size"
 
 type EventListeners = {
 	tick: Array<(scene: Scene) => void>

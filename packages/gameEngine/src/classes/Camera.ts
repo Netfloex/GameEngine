@@ -1,6 +1,6 @@
 import { Position } from "@classes/Position"
 
-import { Positionable } from "@typings/Positionable"
+import { Positionable } from "@typings/optionable/Positionable"
 
 type CameraOpts = Partial<Positionable>
 

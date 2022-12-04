@@ -1,6 +1,6 @@
-import { Alphable } from "@typings/Alphable"
-import { PositionableLike } from "@typings/Positionable"
-import { Rotatable } from "@typings/Rotatable"
+import { Alphable } from "@typings/optionable/Alphable"
+import { PositionableLike } from "@typings/optionable/Positionable"
+import { Rotatable } from "@typings/optionable/Rotatable"
 
 export interface StandardOptions
 	extends PositionableLike,

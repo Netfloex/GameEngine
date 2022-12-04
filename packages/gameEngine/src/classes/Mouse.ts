@@ -1,7 +1,7 @@
 import { Camera } from "@classes/Camera"
 import { Position } from "@classes/Position"
 
-import { Positionable } from "@typings/Positionable"
+import { Positionable } from "@typings/optionable/Positionable"
 
 export class Mouse implements Positionable {
 	private camera: Camera

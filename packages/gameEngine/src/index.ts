@@ -9,6 +9,6 @@ export { useScene } from "@hooks/useScene"
 export { useFrame } from "@hooks/useFrame"
 export { useAddObject } from "@hooks/useAddObject"
 
-export { type Size } from "@typings/Size"
+export { type Size } from "@typings/options/Size"
 
 export { Canvas } from "@react/Canvas"

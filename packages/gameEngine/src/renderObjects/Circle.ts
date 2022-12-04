@@ -4,12 +4,12 @@ import { RenderObject } from "@classes/RenderObject"
 import { circleCircleCollision } from "@utils/collision/circleCircle"
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 
-import { Colorable } from "@typings/Colorable"
-import { OptionalArray } from "@typings/OptionalArray"
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
 import { StandardOptions } from "@typings/StandardOptions"
-import { Strokable } from "@typings/Strokable"
+import { Colorable } from "@typings/optionable/Colorable"
+import { Strokable } from "@typings/optionable/Strokable"
+import { OptionalArray } from "@typings/utils/OptionalArray"
 
 export interface CircleOpts extends StandardOptions, Strokable, Colorable {
 	radius: number

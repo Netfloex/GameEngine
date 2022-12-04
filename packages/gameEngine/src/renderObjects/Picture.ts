@@ -4,11 +4,11 @@ import { RenderObject } from "@classes/RenderObject"
 import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 import { rectangleRectangleCollision } from "@utils/collision/rectangleRectangle"
 
-import { OptionalArray } from "@typings/OptionalArray"
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
-import { Sizable } from "@typings/Sizable"
 import { StandardOptions } from "@typings/StandardOptions"
+import { Sizable } from "@typings/optionable/Sizable"
+import { OptionalArray } from "@typings/utils/OptionalArray"
 
 export interface PictureOpts extends StandardOptions, Sizable {
 	src: string

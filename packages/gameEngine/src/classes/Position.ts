@@ -1,4 +1,4 @@
-import { PositionArray, PositionObject } from "@typings/Positionable"
+import { PositionArray, PositionObject } from "@typings/optionable/Positionable"
 
 type PositionLikeArguments = PositionArray | [PositionObject] | []
 
