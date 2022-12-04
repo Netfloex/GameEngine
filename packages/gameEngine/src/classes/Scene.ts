@@ -27,21 +27,14 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 	constructor(canvas: HTMLCanvasElement, camera: Camera) {
 		super()
+
 		this.canvas = canvas
 		this.camera = camera
 		this.mouse = new Mouse(camera)
 		this.clock = new Clock()
 		this.ctx = canvas.getContext("2d")!
 
-		this.onPointerEvent = this.onPointerEvent.bind(this)
-		canvas.addEventListener("pointermove", this.onPointerEvent)
-		canvas.addEventListener("pointerdown", this.onPointerEvent)
-		canvas.addEventListener("pointerup", this.onPointerEvent)
-
-		this.onKeyboardEvent = this.onKeyboardEvent.bind(this)
-		addEventListener("keydown", this.onKeyboardEvent)
-		addEventListener("keyup", this.onKeyboardEvent)
-
+		this.addEventListeners()
 		this.calculateCanvasOffsets()
 	}
 
@@ -104,10 +97,28 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 	private onKeyboardEvent(e: KeyboardEvent): void {
 		if (e.type == "keydown") {
-			this.keyboard[e.key] = true
+			this.keyboard[e.key.toLowerCase()] = true
 		} else {
-			delete this.keyboard[e.key]
+			delete this.keyboard[e.key.toLowerCase()]
 		}
+	}
+
+	private onBlurEvent(): void {
+		this.keyboard = {}
+	}
+
+	private addEventListeners(): void {
+		this.onPointerEvent = this.onPointerEvent.bind(this)
+		this.canvas.addEventListener("pointermove", this.onPointerEvent)
+		this.canvas.addEventListener("pointerdown", this.onPointerEvent)
+		this.canvas.addEventListener("pointerup", this.onPointerEvent)
+
+		this.onKeyboardEvent = this.onKeyboardEvent.bind(this)
+		addEventListener("keydown", this.onKeyboardEvent)
+		addEventListener("keyup", this.onKeyboardEvent)
+
+		this.onBlurEvent = this.onBlurEvent.bind(this)
+		addEventListener("blur", this.onBlurEvent)
 	}
 
 	public destroy(): void {
@@ -117,5 +128,6 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 		removeEventListener("keydown", this.onKeyboardEvent)
 		removeEventListener("keyup", this.onKeyboardEvent)
+		removeEventListener("blur", this.onBlurEvent)
 	}
 }
