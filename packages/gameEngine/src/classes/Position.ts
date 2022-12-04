@@ -10,7 +10,7 @@ export class Position {
 		if (args.length == 2) {
 			this.x = args[0]
 			this.y = args[1]
-		} else if (args.length == 1) {
+		} else if (args.length == 1 && typeof args[0] == "object") {
 			this.x = args[0].x
 			this.y = args[0].y
 		}

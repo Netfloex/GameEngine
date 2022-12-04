@@ -10,7 +10,7 @@ export class Size {
 		if (args.length == 2) {
 			this.width = args[0]
 			this.height = args[1]
-		} else if (args.length == 1) {
+		} else if (args.length == 1 && typeof args[0] == "object") {
 			this.width = args[0].width
 			this.height = args[0].height
 		}
