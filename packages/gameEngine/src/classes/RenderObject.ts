@@ -7,10 +7,15 @@ import { PositionableLike } from "@typings/optionable/Positionable"
 import { Rotatable } from "@typings/optionable/Rotatable"
 import { Strokable } from "@typings/optionable/Strokable"
 
-type RenderObjectOpts = PositionableLike &
-	Partial<Strokable & Colorable & Rotatable & Alphable> & {
-		visible?: boolean
-	}
+type RenderObjectOpts = Partial<
+	PositionableLike &
+		Strokable &
+		Colorable &
+		Rotatable &
+		Alphable & {
+			visible?: boolean
+		}
+>
 
 export class RenderObject implements RenderObjectOpts {
 	public position: Position
@@ -21,7 +26,7 @@ export class RenderObject implements RenderObjectOpts {
 	public alpha
 	public visible
 
-	private tempPosition = new Position(0, 0)
+	private tempPosition = new Position()
 
 	public prepareRender(
 		ctx: CanvasRenderingContext2D,
@@ -47,10 +52,10 @@ export class RenderObject implements RenderObjectOpts {
 	): void {
 		ctx.beginPath()
 
-		ctx.fillStyle = this.color ?? "white"
-		ctx.strokeStyle = this.color ?? "white"
+		ctx.fillStyle = this.color
+		ctx.strokeStyle = this.color
 
-		ctx.lineWidth = this.strokeWidth ?? 1
+		ctx.lineWidth = this.strokeWidth
 
 		render()
 
@@ -72,7 +77,7 @@ export class RenderObject implements RenderObjectOpts {
 			opts.position instanceof Position
 				? opts.position
 				: Reflect.construct(Position, [opts.position].flat())
-		this.color = opts.color
+		this.color = opts.color ?? "white"
 		this.stroke = opts.stroke
 		this.strokeWidth = opts.stroke ? opts.strokeWidth ?? 1 : 0
 		this.alpha = opts.alpha ?? 1

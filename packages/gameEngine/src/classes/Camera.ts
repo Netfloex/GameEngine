@@ -9,11 +9,7 @@ type CameraOpts = Partial<Positionable>
 export class Camera implements CameraOpts {
 	public position
 
-	private visibleRectangle = new Rectangle({
-		position: [0, 0],
-		color: "",
-		size: [0, 0],
-	})
+	private visibleRectangle = new Rectangle()
 
 	private halfSizeOffset = new Position()
 

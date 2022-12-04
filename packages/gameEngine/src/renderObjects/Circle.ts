@@ -12,7 +12,7 @@ import { Strokable } from "@typings/optionable/Strokable"
 import { OptionalArray } from "@typings/utils/OptionalArray"
 
 export interface CircleOpts extends StandardOptions, Strokable, Colorable {
-	radius: number
+	radius?: number
 }
 
 export class Circle extends RenderObject implements RenderObjectType {
@@ -39,9 +39,9 @@ export class Circle extends RenderObject implements RenderObjectType {
 		})
 	}
 
-	constructor(opts: CircleOpts) {
+	constructor(opts: CircleOpts = {}) {
 		super(opts)
 
-		this.radius = opts.radius
+		this.radius = opts.radius ?? 1
 	}
 }

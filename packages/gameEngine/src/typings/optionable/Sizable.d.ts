@@ -14,5 +14,5 @@ export type SizeArray = [width: number, height: number]
 export type SizeLike = Size | SizeArray | SizeObject
 
 export interface SizeableLike {
-	size: SizeLike
+	size?: SizeLike
 }

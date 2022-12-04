@@ -48,13 +48,13 @@ export class Rectangle extends RenderObject implements RenderObjectType {
 		})
 	}
 
-	constructor(opts: RectangleOpts) {
+	constructor(opts: RectangleOpts = {}) {
 		super(opts)
 
 		this.size =
 			opts.size instanceof Size
 				? opts.size
 				: Reflect.construct(Size, [opts.size].flat())
-		this.color = opts.color
+		this.color = opts.color ?? "white"
 	}
 }
