@@ -35,6 +35,11 @@ export class Circle extends RenderObject implements RenderObjectType {
 					return circleRectangleCollision(this, other)
 				case "circle":
 					return circleCircleCollision(this, other)
+				case "text":
+					return circleRectangleCollision(
+						this,
+						other.getBoundingBoxRectangle(),
+					)
 			}
 		})
 	}

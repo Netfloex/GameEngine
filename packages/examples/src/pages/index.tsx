@@ -4,6 +4,7 @@ import { FC, useRef } from "react"
 
 import { BouncingCircle } from "@components/BouncingCircle"
 import { BouncingRectangle } from "@components/BouncingRectangle"
+import { FpsCounter } from "@components/FpsCounter"
 import { HamburgerPicture } from "@components/HamburgerPicture"
 import { KeyboardControls } from "@components/KeyboardControls"
 import { MouseCircle } from "@components/MouseCircle"
@@ -65,6 +66,7 @@ const Page: NextPage = () => {
 				<RotatingSquare />
 				<StaticObjects />
 				<HamburgerPicture />
+				<FpsCounter />
 				<MouseCircle />
 			</Canvas>
 		</>

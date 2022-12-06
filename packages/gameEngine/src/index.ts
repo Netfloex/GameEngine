@@ -3,11 +3,13 @@ export { Clock } from "@classes/Clock"
 export { Mouse } from "@classes/Mouse"
 export { Position } from "@classes/Position"
 export { RenderObject } from "@classes/RenderObject"
+export { Scene } from "@classes/Scene"
 export { Size } from "@classes/Size"
 
 export { Circle } from "@renderObjects/Circle"
 export { Picture } from "@renderObjects/Picture"
 export { Rectangle } from "@renderObjects/Rectangle"
+export { Text } from "@renderObjects/Text"
 
 export { useAddObject } from "@hooks/useAddObject"
 export { useCanvas } from "@hooks/useCanvas"

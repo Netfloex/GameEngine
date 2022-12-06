@@ -11,8 +11,8 @@ type EventListeners = {
 }
 
 export class Scene extends BasicEventEmitter<EventListeners> {
-	private canvas: HTMLCanvasElement
-	private ctx: CanvasRenderingContext2D
+	public canvas: HTMLCanvasElement
+	public ctx: CanvasRenderingContext2D
 
 	private padding = new Size()
 	private border = new Size()
@@ -40,7 +40,6 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 	public tick(): void {
 		this.emit("tick", this)
-		this.clock.setDeltaTime()
 
 		this.ctx.clearRect(0, 0, this.width, this.height)
 		for (const obj of this.objects) {
@@ -52,6 +51,8 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 				}
 			}
 		}
+
+		this.clock.setDeltaTime()
 	}
 
 	/* 
@@ -67,6 +68,9 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 	}
 
 	public add(...objects: RenderObjects[]): void {
+		if (objects.find((o) => !o)) {
+			throw new Error("scene.add with an object that is undefined!")
+		}
 		this.objects.push(...objects)
 	}
 

@@ -44,6 +44,11 @@ export class Rectangle extends RenderObject implements RenderObjectType {
 					return rectangleRectangleCollision(other, this)
 				case "circle":
 					return circleRectangleCollision(other, this)
+				case "text":
+					return rectangleRectangleCollision(
+						other.getBoundingBoxRectangle(),
+						this,
+					)
 			}
 		})
 	}
