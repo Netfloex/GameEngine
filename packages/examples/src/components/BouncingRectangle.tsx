@@ -1,4 +1,4 @@
-import { Rectangle, useAddObject, useFrame } from "gameengine"
+import { Rectangle, Render, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const BouncingRectangle: FC = () => {
@@ -11,8 +11,6 @@ export const BouncingRectangle: FC = () => {
 	)
 
 	const velocityX = useRef(1)
-
-	useAddObject(bouncingRectangle)
 
 	useFrame((scene) => {
 		bouncingRectangle.current.color =
@@ -36,5 +34,5 @@ export const BouncingRectangle: FC = () => {
 		}
 	})
 
-	return null
+	return <Render object={bouncingRectangle} />
 }

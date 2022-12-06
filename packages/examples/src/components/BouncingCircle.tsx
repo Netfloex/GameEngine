@@ -1,4 +1,4 @@
-import { Circle, useAddObject, useFrame } from "gameengine"
+import { Circle, Render, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const BouncingCircle: FC = () => {
@@ -10,8 +10,6 @@ export const BouncingCircle: FC = () => {
 		}),
 	)
 	const velocityX = useRef(4)
-
-	useAddObject(bouncingCircle)
 
 	useFrame((scene) => {
 		bouncingCircle.current.color = bouncingCircle.current.isCollidingWith(
@@ -32,5 +30,5 @@ export const BouncingCircle: FC = () => {
 		}
 	})
 
-	return null
+	return <Render object={bouncingCircle} />
 }

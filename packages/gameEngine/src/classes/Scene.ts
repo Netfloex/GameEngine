@@ -74,6 +74,10 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		this.objects.push(...objects)
 	}
 
+	public remove(...objects: RenderObjects[]): void {
+		this.objects = this.objects.filter((o) => !objects.includes(o))
+	}
+
 	public calculateCanvasOffsets(): void {
 		this.rect = this.canvas.getBoundingClientRect()
 

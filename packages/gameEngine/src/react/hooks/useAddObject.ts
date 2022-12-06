@@ -21,6 +21,10 @@ export const useAddObject = <
 				: objectsGenerator.current
 
 		scene.add(...[objects].flat())
+
+		return () => {
+			scene.remove(...[objects].flat())
+		}
 	}, [objectsGenerator, scene])
 
 	return objectsGenerator

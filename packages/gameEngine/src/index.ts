@@ -17,3 +17,4 @@ export { useFrame } from "@hooks/useFrame"
 export { useScene } from "@hooks/useScene"
 
 export { Canvas } from "@react/Canvas"
+export { Render } from "@react/Render"

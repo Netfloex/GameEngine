@@ -1,4 +1,4 @@
-import { Rectangle, useAddObject, useFrame } from "gameengine"
+import { Rectangle, Render, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const RotatingSquare: FC = () => {
@@ -23,8 +23,6 @@ export const RotatingSquare: FC = () => {
 		}),
 	])
 
-	useAddObject(rectangleRef)
-
 	const moveSpeed = 0.05
 
 	useFrame((scene) => {
@@ -35,5 +33,5 @@ export const RotatingSquare: FC = () => {
 			scene.clock.getElapsedTime() * (moveSpeed / 16)
 	})
 
-	return null
+	return <Render object={rectangleRef} />
 }

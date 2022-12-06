@@ -1,4 +1,4 @@
-import { Canvas, Circle, Rectangle, useAddObject, useScene } from "gameengine"
+import { Canvas, Circle, Rectangle, Render, useScene } from "gameengine"
 import { NextPage } from "next"
 import { FC, useRef } from "react"
 
@@ -15,38 +15,36 @@ import { useWindowSize } from "@hooks"
 const StaticObjects: FC = () => {
 	const scene = useScene()
 
-	useAddObject(
-		useRef(() => [
-			new Rectangle({
-				position: [300, 180],
-				size: { width: 30, height: 280 },
-				alpha: 0.5,
-				color: "white",
-			}),
-			new Circle({
-				position: [0, 0],
-				radius: 10,
-				color: "white",
-			}),
-			new Circle({
-				position: [scene.width, 0],
-				radius: 10,
-				color: "white",
-			}),
-			new Circle({
-				position: [0, scene.height],
-				radius: 10,
-				color: "white",
-			}),
-			new Circle({
-				position: [scene.width, scene.height],
-				radius: 10,
-				color: "white",
-			}),
-		]),
-	)
+	const staticObjects = useRef(() => [
+		new Rectangle({
+			position: [300, 180],
+			size: { width: 30, height: 280 },
+			alpha: 0.5,
+			color: "white",
+		}),
+		new Circle({
+			position: [0, 0],
+			radius: 10,
+			color: "white",
+		}),
+		new Circle({
+			position: [scene.width, 0],
+			radius: 10,
+			color: "white",
+		}),
+		new Circle({
+			position: [0, scene.height],
+			radius: 10,
+			color: "white",
+		}),
+		new Circle({
+			position: [scene.width, scene.height],
+			radius: 10,
+			color: "white",
+		}),
+	])
 
-	return null
+	return <Render object={staticObjects} />
 }
 
 const Page: NextPage = () => {

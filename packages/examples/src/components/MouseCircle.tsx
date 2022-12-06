@@ -1,4 +1,4 @@
-import { Circle, useAddObject, useFrame } from "gameengine"
+import { Circle, Render, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const MouseCircle: FC = () => {
@@ -11,8 +11,6 @@ export const MouseCircle: FC = () => {
 			strokeWidth: 2,
 		}),
 	)
-
-	useAddObject(mouseCircle)
 
 	useFrame((scene) => {
 		mouseCircle.current.position.copyFrom(scene.mouse.worldPosition)
@@ -38,5 +36,5 @@ export const MouseCircle: FC = () => {
 		mouseCircle.current.stroke = true
 	})
 
-	return null
+	return <Render object={mouseCircle} />
 }

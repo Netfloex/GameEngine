@@ -1,4 +1,4 @@
-import { Text, useAddObject, useFrame } from "gameengine"
+import { Render, Text, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const FpsCounter: FC = () => {
@@ -34,7 +34,5 @@ export const FpsCounter: FC = () => {
 		frames.push(elapsedTime)
 	})
 
-	useAddObject(fpsCounter)
-
-	return null
+	return <Render object={fpsCounter} />
 }

@@ -1,4 +1,4 @@
-import { Picture, useAddObject, useFrame } from "gameengine"
+import { Picture, Render, useFrame } from "gameengine"
 import { FC, useRef } from "react"
 
 export const HamburgerPicture: FC = () => {
@@ -16,7 +16,5 @@ export const HamburgerPicture: FC = () => {
 			(1 + Math.sin(clock.getElapsedTime() * 0.0005)) / 2
 	})
 
-	useAddObject(hamburger)
-
-	return null
+	return <Render object={hamburger} />
 }
