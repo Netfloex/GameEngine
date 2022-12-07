@@ -7,6 +7,7 @@ export const FpsCounter: FC = () => {
 			text: "0",
 			fontSize: 30,
 			position: [0, 0],
+			stroke: true,
 		}),
 	)
 
@@ -34,5 +35,12 @@ export const FpsCounter: FC = () => {
 		frames.push(elapsedTime)
 	})
 
-	return <Render object={fpsCounter} />
+	return (
+		<>
+			<Render object={fpsCounter} />
+			{/* <Render
+				object={useRef(fpsCounter.current.getBoundingBoxRectangle())}
+			/> */}
+		</>
+	)
 }

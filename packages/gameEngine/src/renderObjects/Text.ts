@@ -9,9 +9,10 @@ import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
 import { StandardOptions } from "@typings/StandardOptions"
 import { Colorable } from "@typings/optionable/Colorable"
+import { Strokable } from "@typings/optionable/Strokable"
 import { OptionalArray } from "@typings/utils/OptionalArray"
 
-export interface TextOpts extends StandardOptions, Colorable {
+export interface TextOpts extends StandardOptions, Colorable, Strokable {
 	text: string | number
 	maxWidth?: number
 	fontFamily?: string
@@ -52,6 +53,7 @@ export class Text extends RenderObject implements RenderObjectType {
 		ctx.textBaseline = "top"
 		ctx.fillStyle = this.color
 		ctx.strokeStyle = this.color
+		ctx.lineWidth = this.strokeWidth
 	}
 
 	public getWidth(): number {
@@ -74,7 +76,11 @@ export class Text extends RenderObject implements RenderObjectType {
 	public render(ctx: CanvasRenderingContext2D, camera: Camera): void {
 		this.prepareRender(ctx, camera, () => {
 			this.setTextSettings(ctx)
-			ctx.fillText(this.text.toString(), 0, 0, this.maxWidth)
+			const renderText = this.stroke
+				? ctx.strokeText.bind(ctx)
+				: ctx.fillText.bind(ctx)
+
+			renderText(this.text.toString(), 0, 0, this.maxWidth)
 		})
 	}
 
@@ -110,5 +116,7 @@ export class Text extends RenderObject implements RenderObjectType {
 		this.fontFamily = opts.fontFamily ?? "sans-serif"
 		this.fontSize = opts.fontSize ?? 10
 		this.fontSizeUnit = opts.fontSizeUnit ?? "px"
+		this.stroke = opts.stroke
+		this.strokeWidth = opts.strokeWidth ?? 1
 	}
 }
