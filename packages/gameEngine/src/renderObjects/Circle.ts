@@ -7,6 +7,7 @@ import { circleRectangleCollision } from "@utils/collision/circleRectangle"
 import { RenderObjectType } from "@typings/RenderObjectType"
 import { RenderObjects } from "@typings/RenderObjects"
 import { StandardOptions } from "@typings/StandardOptions"
+import { WithPath2D } from "@typings/WithPath2D"
 import { Colorable } from "@typings/optionable/Colorable"
 import { Strokable } from "@typings/optionable/Strokable"
 import { OptionalArray } from "@typings/utils/OptionalArray"
@@ -15,16 +16,32 @@ export interface CircleOpts extends StandardOptions, Strokable, Colorable {
 	radius?: number
 }
 
-export class Circle extends RenderObject implements RenderObjectType {
+export class Circle
+	extends RenderObject
+	implements RenderObjectType, WithPath2D
+{
 	public radius
 	public type = "circle" as const
 
+	public path: Path2D | undefined
+	private oldRadius: number | undefined
+
+	public createPath(): Path2D {
+		const path = new Path2D()
+		path.arc(0, 0, this.radius, 0, 2 * Math.PI)
+
+		return path
+	}
+
 	public render(ctx: CanvasRenderingContext2D, camera: Camera): void {
-		this.prepareRender(ctx, camera, () =>
-			this.strokeOrFill(ctx, () => {
-				ctx.arc(0, 0, this.radius, 0, 2 * Math.PI)
-			}),
-		)
+		this.prepareRender(ctx, camera, () => {
+			if (!this.path || this.oldRadius !== this.radius) {
+				this.path = this.createPath()
+				this.oldRadius = this.radius
+			}
+
+			return this.strokeOrFill(ctx, this.path)
+		})
 	}
 
 	public isCollidingWith(others: OptionalArray<RenderObjects>): boolean {

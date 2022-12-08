@@ -1,6 +1,8 @@
 import { Camera } from "@classes/Camera"
 import { Position } from "@classes/Position"
 
+import { fillOrStroke } from "@utils/fillOrStroke"
+
 import { Alphable } from "@typings/optionable/Alphable"
 import { Colorable } from "@typings/optionable/Colorable"
 import { PositionableLike } from "@typings/optionable/Positionable"
@@ -46,10 +48,7 @@ export class RenderObject implements RenderObjectOpts {
 		ctx.restore()
 	}
 
-	public strokeOrFill(
-		ctx: CanvasRenderingContext2D,
-		render: () => void,
-	): void {
+	public strokeOrFill(ctx: CanvasRenderingContext2D, path: Path2D): void {
 		ctx.beginPath()
 
 		ctx.fillStyle = this.color
@@ -57,13 +56,7 @@ export class RenderObject implements RenderObjectOpts {
 
 		ctx.lineWidth = this.strokeWidth
 
-		render()
-
-		if (!this.stroke) {
-			ctx.fill()
-		} else {
-			ctx.stroke()
-		}
+		fillOrStroke(ctx, this.stroke)(path)
 	}
 
 	public getScreenPosition(camera: Camera): Position {

@@ -16,6 +16,10 @@ export class Size {
 		}
 	}
 
+	public equals(other: Size): boolean {
+		return this.width == other.width && this.height == other.height
+	}
+
 	public copyFrom(other: Size): Size {
 		this.width = other.width
 		this.height = other.height

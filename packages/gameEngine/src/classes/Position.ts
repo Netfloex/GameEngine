@@ -30,6 +30,10 @@ export class Position {
 		return this
 	}
 
+	public equals(other: Position): boolean {
+		return this.x == other.x && this.y == other.y
+	}
+
 	public copyFrom(other: Position): Position {
 		this.x = other.x
 		this.y = other.y
