@@ -1,5 +1,9 @@
+import { Position } from "@classes/Position"
+
 import { CircleLike } from "@typings/CircleLike"
 import { RectangleLike } from "@typings/RectangleLike"
+
+const tempRotatedPosition = new Position()
 
 export const circleRectangleCollision = (
 	circle: CircleLike,
@@ -13,14 +17,24 @@ export const circleRectangleCollision = (
 
 	const circleComputedRadius = circle.radius + circleStroke
 
+	const cos = Math.cos(rectangle.rotation)
+	const sin = Math.sin(rectangle.rotation)
+
+	tempRotatedPosition
+		.copyFrom(circle.position)
+		.subtract(rectangle.position)
+		.set((pos) => [pos.x * cos + pos.y * sin, pos.x * sin - pos.y * cos])
+
+	tempRotatedPosition.add(rectangle.position)
+
 	return (
-		circle.position.x + circleComputedRadius >
+		tempRotatedPosition.x + circleComputedRadius >
 			rectangle.position.x - rectangleWidth &&
-		circle.position.x - circleComputedRadius <
+		tempRotatedPosition.x - circleComputedRadius <
 			rectangle.position.x + rectangleWidth &&
-		circle.position.y + circleComputedRadius >
+		tempRotatedPosition.y + circleComputedRadius >
 			rectangle.position.y - rectangleHeight &&
-		circle.position.y - circleComputedRadius <
+		tempRotatedPosition.y - circleComputedRadius <
 			rectangle.position.y + rectangleHeight
 	)
 }

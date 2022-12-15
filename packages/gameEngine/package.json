@@ -14,8 +14,8 @@
 	"devDependencies": {
 		"@rollup/plugin-babel": "^6.0.2",
 		"@rollup/plugin-commonjs": "^23.0.2",
-		"@rollup/plugin-json": "^5.0.1",
 		"@rollup/plugin-node-resolve": "^15.0.1",
+		"@types/node": "^18.11.15",
 		"eslint-plugin-react": "^7.31.11",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"rollup": "^3.3.0",

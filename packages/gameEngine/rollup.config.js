@@ -1,5 +1,4 @@
 import commonjs from "@rollup/plugin-commonjs"
-import json from "@rollup/plugin-json"
 import { nodeResolve } from "@rollup/plugin-node-resolve"
 
 import { join } from "path"
@@ -18,11 +17,12 @@ export default defineConfig({
 		generatedCode: "es5",
 		plugins: dev ? [] : [terser()],
 	},
-	plugins: [
-		external(),
-		typescript(),
-		commonjs(),
-		nodeResolve({ preferBuiltins: true }),
-		json(),
-	],
+	plugins: dev
+		? [external(), typescript()]
+		: [
+				external(),
+				typescript(),
+				commonjs(),
+				nodeResolve({ preferBuiltins: true }),
+		  ],
 })

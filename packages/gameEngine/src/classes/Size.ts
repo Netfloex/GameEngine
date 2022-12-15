@@ -7,13 +7,7 @@ export class Size {
 	height = 0
 
 	constructor(...args: SizeLikeArguments) {
-		if (args.length == 2) {
-			this.width = args[0]
-			this.height = args[1]
-		} else if (args.length == 1 && typeof args[0] == "object") {
-			this.width = args[0].width
-			this.height = args[0].height
-		}
+		this.set(...args)
 	}
 
 	public equals(other: Size): boolean {
@@ -23,6 +17,23 @@ export class Size {
 	public copyFrom(other: Size): Size {
 		this.width = other.width
 		this.height = other.height
+
+		return this
+	}
+
+	public set(
+		...args: SizeLikeArguments | [(state: Size) => SizeLikeArguments]
+	): Size {
+		if (args.length == 2) {
+			this.width = args[0]
+			this.height = args[1]
+		} else if (args.length == 1 && typeof args[0] == "object") {
+			this.width = args[0].width
+			this.height = args[0].height
+		} else if (args.length == 1 && typeof args[0] == "function") {
+			const data = args[0](this)
+			this.set(...data)
+		}
 
 		return this
 	}
