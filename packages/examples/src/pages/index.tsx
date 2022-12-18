@@ -49,15 +49,10 @@ const StaticObjects: FC = () => {
 
 const Page: NextPage = () => {
 	const size = useWindowSize()
-	const margin = 40
 
 	return (
 		<>
-			<Canvas
-				style={{ margin }}
-				width={(size.width ?? 0) - margin * 2}
-				height={(size.height ?? 0) - margin * 2}
-			>
+			<Canvas width={size.width ?? 0} height={size.height ?? 0}>
 				<KeyboardControls />
 				<BouncingCircle />
 				<BouncingRectangle />

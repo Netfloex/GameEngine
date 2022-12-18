@@ -13,24 +13,26 @@
 		"lint": "eslint ."
 	},
 	"devDependencies": {
+		"@types/lodash.throttle": "^4.1.7",
 		"@types/react": "^18.0.25",
 		"@typescript-eslint/eslint-plugin": "^5.42.1",
 		"@typescript-eslint/parser": "^5.42.1",
+		"eslint": "^8.27.0",
 		"eslint-config-next": "^13.0.3",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-css-modules": "^2.11.0",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"eslint": "^8.27.0",
-		"next-seo": "^5.14.1",
+		"gameengine": "*",
+		"lodash.throttle": "^4.1.1",
 		"next": "^13.0.3",
-		"react-dom": "^18.2.0",
+		"next-seo": "^5.14.1",
 		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
 		"sass": "^1.56.1",
+		"stylelint": "^14.14.1",
 		"stylelint-config-idiomatic-order": "^9.0.0",
 		"stylelint-config-standard-scss": "^6.1.0",
-		"stylelint-scss": "^4.3.0",
-		"stylelint": "^14.14.1",
-		"gameengine": "*"
+		"stylelint-scss": "^4.3.0"
 	}
 }

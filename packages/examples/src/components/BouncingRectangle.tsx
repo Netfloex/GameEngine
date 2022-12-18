@@ -23,7 +23,7 @@ export const BouncingRectangle: FC = () => {
 		bouncingRectangle.current.position.x += velocityX.current
 
 		if (bouncingRectangle.current.position.x > scene.width) {
-			velocityX.current = -1 * Math.abs(velocityX.current)
+			velocityX.current = -Math.abs(velocityX.current)
 			bouncingRectangle.current.stroke = true
 			bouncingRectangle.current.strokeWidth = Math.floor(
 				Math.random() * 30,
