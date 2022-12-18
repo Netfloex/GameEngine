@@ -1,6 +1,6 @@
 import { Circle, Position, Render, useFrame } from "gameengine"
 import throttle from "lodash.throttle"
-import { FC, useCallback, useMemo, useRef } from "react"
+import { FC, MutableRefObject, useCallback, useMemo, useRef } from "react"
 
 interface BirdData {
 	velocity: Position
@@ -13,7 +13,10 @@ const birdStats = {
 	gravity: new Position(0, 0.5),
 }
 
-export const Bird: FC = () => {
+export const Bird: FC<{
+	scoreRef: MutableRefObject<number>
+	obstacleDistance: number
+}> = ({ scoreRef, obstacleDistance }) => {
 	const bird = useRef(
 		new Circle({
 			radius: 10,
@@ -29,7 +32,8 @@ export const Bird: FC = () => {
 	const reset = useCallback(() => {
 		bird.current.position.copyFrom(birdStats.startPosition)
 		birdData.current.velocity.copyFrom(birdStats.startVelocity)
-	}, [])
+		scoreRef.current = 0
+	}, [scoreRef])
 
 	const flyUp = useMemo(
 		() =>
@@ -73,6 +77,9 @@ export const Bird: FC = () => {
 		scene.camera.position.copyFrom(bird.current.position)
 		scene.camera.position.y = 0
 		scene.camera.position.x -= 300
+		scoreRef.current = Math.floor(
+			bird.current.position.x / obstacleDistance,
+		)
 	})
 
 	return <Render object={bird} />
