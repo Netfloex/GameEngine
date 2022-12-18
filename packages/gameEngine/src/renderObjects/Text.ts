@@ -13,7 +13,9 @@ import { Strokable } from "@typings/optionable/Strokable"
 import { OptionalArray } from "@typings/utils/OptionalArray"
 
 export interface TextOpts extends StandardOptions, Colorable, Strokable {
+	prefix?: string
 	text: string | number
+	suffix?: string
 	maxWidth?: number
 	fontFamily?: string
 	fontSize?: number
@@ -22,7 +24,9 @@ export interface TextOpts extends StandardOptions, Colorable, Strokable {
 
 export class Text extends RenderObject implements RenderObjectType {
 	public type = "text" as const
+	public prefix
 	public text
+	public suffix
 	public maxWidth
 	public fontFamily
 	public fontSize
@@ -73,6 +77,10 @@ export class Text extends RenderObject implements RenderObjectType {
 		return this.fontSize
 	}
 
+	public getText(): string {
+		return this.prefix + this.text + this.suffix
+	}
+
 	public render(ctx: CanvasRenderingContext2D, camera: Camera): void {
 		this.prepareRender(ctx, camera, () => {
 			this.setTextSettings(ctx)
@@ -80,7 +88,7 @@ export class Text extends RenderObject implements RenderObjectType {
 				? ctx.strokeText.bind(ctx)
 				: ctx.fillText.bind(ctx)
 
-			renderText(this.text.toString(), 0, 0, this.maxWidth)
+			renderText(this.getText(), 0, 0, this.maxWidth)
 		})
 	}
 
@@ -110,7 +118,9 @@ export class Text extends RenderObject implements RenderObjectType {
 	constructor(opts: TextOpts) {
 		super(opts)
 
+		this.prefix = opts.prefix ?? ""
 		this.text = opts.text
+		this.suffix = opts.suffix ?? ""
 		this.maxWidth = opts.maxWidth
 		this.color = opts.color ?? "white"
 		this.fontFamily = opts.fontFamily ?? "sans-serif"

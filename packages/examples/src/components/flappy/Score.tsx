@@ -6,12 +6,14 @@ export const Score: FC<{ scoreRef: MutableRefObject<number> }> = ({
 }) => {
 	const score = useRef(
 		new Text({
+			prefix: "Score: ",
 			text: 0,
 			fontSize: 30,
 		}),
 	)
 	const highScore = useRef(
 		new Text({
+			prefix: "High Score: ",
 			text: 0,
 			fontSize: 30,
 		}),
@@ -22,8 +24,8 @@ export const Score: FC<{ scoreRef: MutableRefObject<number> }> = ({
 	const highScorePositionOffset = useMemo(() => new Position(5, 50), [])
 
 	useFrame((scene) => {
-		score.current.text = "Score: " + scoreRef.current
-		highScore.current.text = "High Score: " + highScoreRef.current
+		score.current.text = scoreRef.current
+		highScore.current.text = highScoreRef.current
 		score.current.position
 			.copyFrom(scene.camera.position)
 			.add(scorePositionOffset)
