@@ -5,6 +5,7 @@ import { fillOrStroke } from "@utils/fillOrStroke"
 
 import { Alphable } from "@typings/optionable/Alphable"
 import { Colorable } from "@typings/optionable/Colorable"
+import { Nameable } from "@typings/optionable/Nameable"
 import { PositionableLike } from "@typings/optionable/Positionable"
 import { Rotatable } from "@typings/optionable/Rotatable"
 import { Strokable } from "@typings/optionable/Strokable"
@@ -14,7 +15,8 @@ type RenderObjectOpts = Partial<
 		Strokable &
 		Colorable &
 		Rotatable &
-		Alphable & {
+		Alphable &
+		Nameable & {
 			visible?: boolean
 		}
 >
@@ -27,6 +29,7 @@ export class RenderObject implements RenderObjectOpts {
 	public rotation
 	public alpha
 	public visible
+	public name
 
 	private tempPosition = new Position()
 
@@ -76,5 +79,6 @@ export class RenderObject implements RenderObjectOpts {
 		this.alpha = opts.alpha ?? 1
 		this.rotation = opts.rotation ?? 0
 		this.visible = opts.visible ?? true
+		this.name = opts.name
 	}
 }
