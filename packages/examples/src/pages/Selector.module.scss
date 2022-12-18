@@ -1,0 +1,38 @@
+.wrapper {
+	display: flex;
+	height: 100%;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	a {
+		color: white;
+		text-decoration: none;
+		transition: color 0.3s;
+
+		&:hover {
+			color: lightblue;
+		}
+	}
+
+	.card {
+		padding: 1rem;
+		border: 1px solid rgba($color: #000, $alpha: 40%);
+		border-radius: 10px;
+		margin: 4rem;
+		background-color: rgba($color: #000, $alpha: 30%);
+		transition: background-color 0.4s;
+
+		h1 {
+			margin: 0;
+		}
+
+		img {
+			background-color: #333;
+		}
+
+		&:hover {
+			background-color: rgba($color: #000, $alpha: 20%);
+		}
+	}
+}
