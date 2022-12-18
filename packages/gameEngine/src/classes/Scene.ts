@@ -82,23 +82,28 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 		this.rect = this.canvas.getBoundingClientRect()
 
 		const canvasStyle = document.defaultView?.getComputedStyle(this.canvas)
-		this.padding.width = parseInt(canvasStyle?.paddingLeft || "0") || 0
-		this.padding.height = parseInt(canvasStyle?.paddingTop || "0") || 0
-		this.border.width = parseInt(canvasStyle?.borderLeft || "0") || 0
-		this.border.height = parseInt(canvasStyle?.borderTop || "0") || 0
+
+		this.padding.set(
+			parseInt(canvasStyle?.paddingLeft || "0") || 0,
+			parseInt(canvasStyle?.paddingTop || "0") || 0,
+		)
+		this.border.set(
+			parseInt(canvasStyle?.borderLeft || "0") || 0,
+			parseInt(canvasStyle?.borderTop || "0") || 0,
+		)
 	}
 
 	private onPointerEvent(e: PointerEvent): void {
-		this.mouse.position.x =
+		this.mouse.position.set(
 			e.clientX -
-			(this.rect?.left ?? 0) -
-			this.border.width -
-			this.padding.width
-		this.mouse.position.y =
+				(this.rect?.left ?? 0) -
+				this.border.width -
+				this.padding.width,
 			e.clientY -
-			(this.rect?.top ?? 0) -
-			this.border.height -
-			this.padding.height
+				(this.rect?.top ?? 0) -
+				this.border.height -
+				this.padding.height,
+		)
 
 		this.mouse.button = e.buttons
 	}
@@ -136,6 +141,7 @@ export class Scene extends BasicEventEmitter<EventListeners> {
 
 		removeEventListener("keydown", this.onKeyboardEvent)
 		removeEventListener("keyup", this.onKeyboardEvent)
+
 		removeEventListener("blur", this.onBlurEvent)
 	}
 }

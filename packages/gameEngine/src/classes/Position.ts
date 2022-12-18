@@ -6,39 +6,75 @@ export class Position {
 	x = 0
 	y = 0
 
+	private parsePositionLike(
+		...args:
+			| PositionLikeArguments
+			| [(state: Position) => PositionLikeArguments]
+	): PositionObject {
+		if (args.length == 2) {
+			return {
+				x: args[0],
+				y: args[1],
+			}
+		} else if (args.length == 1 && typeof args[0] == "object") {
+			return {
+				x: args[0].x,
+				y: args[0].y,
+			}
+		} else if (args.length == 1 && typeof args[0] == "function") {
+			const data = args[0](this)
+			return this.parsePositionLike(...data)
+		}
+
+		return {
+			x: 0,
+			y: 0,
+		}
+	}
+
 	constructor(...args: PositionLikeArguments) {
 		this.set(...args)
 	}
 
-	public add(other: Position): Position {
-		this.x += other.x
-		this.y += other.y
+	public add(...other: PositionLikeArguments): Position {
+		const parsed = this.parsePositionLike(...other)
+		this.x += parsed.x
+		this.y += parsed.y
 
 		return this
 	}
 
-	public subtract(other: Position): Position {
-		this.x -= other.x
-		this.y -= other.y
+	public subtract(...other: PositionLikeArguments): Position {
+		const parsed = this.parsePositionLike(...other)
+
+		this.x -= parsed.x
+		this.y -= parsed.y
 
 		return this
 	}
 
-	public squaredDistanceTo(other: Position): number {
-		return Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2)
+	public squaredDistanceTo(...other: PositionLikeArguments): number {
+		const parsed = this.parsePositionLike(...other)
+		return Math.pow(this.x - parsed.x, 2) + Math.pow(this.y - parsed.y, 2)
 	}
 
-	public distanceTo(other: Position): number {
-		return Math.sqrt(this.squaredDistanceTo(other))
+	public distanceTo(...other: PositionLikeArguments): number {
+		const parsed = this.parsePositionLike(...other)
+
+		return Math.sqrt(this.squaredDistanceTo(parsed))
 	}
 
-	public equals(other: Position): boolean {
-		return this.x == other.x && this.y == other.y
+	public equals(...other: PositionLikeArguments): boolean {
+		const parsed = this.parsePositionLike(...other)
+
+		return this.x == parsed.x && this.y == parsed.y
 	}
 
-	public copyFrom(other: Position): Position {
-		this.x = other.x
-		this.y = other.y
+	public copyFrom(...other: PositionLikeArguments): Position {
+		const parsed = this.parsePositionLike(...other)
+
+		this.x = parsed.x
+		this.y = parsed.y
 
 		return this
 	}
@@ -48,16 +84,9 @@ export class Position {
 			| PositionLikeArguments
 			| [(state: Position) => PositionLikeArguments]
 	): Position {
-		if (args.length == 2) {
-			this.x = args[0]
-			this.y = args[1]
-		} else if (args.length == 1 && typeof args[0] == "object") {
-			this.x = args[0].x
-			this.y = args[0].y
-		} else if (args.length == 1 && typeof args[0] == "function") {
-			const data = args[0](this)
-			this.set(...data)
-		}
+		const parsed = this.parsePositionLike(...args)
+		this.x = parsed.x
+		this.y = parsed.y
 
 		return this
 	}

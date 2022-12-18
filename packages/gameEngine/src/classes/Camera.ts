@@ -11,18 +11,12 @@ export class Camera implements CameraOpts {
 
 	private visibleRectangle = new Rectangle()
 
-	private halfSizeOffset = new Position()
-
 	public getVisibleRectangle(scene: Scene): Rectangle {
-		this.halfSizeOffset.x = scene.width / 2
-		this.halfSizeOffset.y = scene.height / 2
-
 		this.visibleRectangle.position
 			.copyFrom(this.position)
-			.add(this.halfSizeOffset)
+			.add(scene.width / 2, scene.height / 2)
 
-		this.visibleRectangle.size.width = scene.width
-		this.visibleRectangle.size.height = scene.height
+		this.visibleRectangle.size.copyFrom(scene)
 
 		return this.visibleRectangle
 	}

@@ -1,5 +1,5 @@
-import { Position, Render, Text, useFrame } from "gameengine"
-import { FC, MutableRefObject, useMemo, useRef } from "react"
+import { Render, Text, useFrame } from "gameengine"
+import { FC, MutableRefObject, useRef } from "react"
 
 export const Score: FC<{ scoreRef: MutableRefObject<number> }> = ({
 	scoreRef,
@@ -20,18 +20,11 @@ export const Score: FC<{ scoreRef: MutableRefObject<number> }> = ({
 	)
 	const highScoreRef = useRef(0)
 
-	const scorePositionOffset = useMemo(() => new Position(5, 5), [])
-	const highScorePositionOffset = useMemo(() => new Position(5, 50), [])
-
 	useFrame((scene) => {
 		score.current.text = scoreRef.current
 		highScore.current.text = highScoreRef.current
-		score.current.position
-			.copyFrom(scene.camera.position)
-			.add(scorePositionOffset)
-		highScore.current.position
-			.copyFrom(scene.camera.position)
-			.add(highScorePositionOffset)
+		score.current.position.copyFrom(scene.camera.position).add(5, 5)
+		highScore.current.position.copyFrom(scene.camera.position).add(5, 50)
 		highScoreRef.current = Math.max(scoreRef.current, highScoreRef.current)
 	})
 

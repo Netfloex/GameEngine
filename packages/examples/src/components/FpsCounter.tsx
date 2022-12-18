@@ -20,7 +20,6 @@ export const FpsCounter: FC = () => {
 		const elapsedTime = clock.getElapsedTime()
 
 		if (frames.length && frameCount.current % 30 == 0) {
-			fpsCounter.current.text = clock.getElapsedTime()
 			fpsCounter.current.text =
 				Math.round(1000 / ((elapsedTime - frames[0]) / frames.length)) +
 				" fps"
