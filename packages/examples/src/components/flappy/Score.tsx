@@ -7,14 +7,12 @@ export const Score: FC<{ scoreRef: MutableRefObject<number> }> = ({
 	const score = useRef(
 		new Text({
 			prefix: "Score: ",
-			text: 0,
 			fontSize: 30,
 		}),
 	)
 	const highScore = useRef(
 		new Text({
 			prefix: "High Score: ",
-			text: 0,
 			fontSize: 30,
 		}),
 	)

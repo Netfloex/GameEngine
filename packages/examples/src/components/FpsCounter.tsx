@@ -4,7 +4,7 @@ import { FC, useRef } from "react"
 export const FpsCounter: FC = () => {
 	const fpsCounter = useRef(
 		new Text({
-			text: "0",
+			suffix: " fps",
 			fontSize: 30,
 			position: [0, 0],
 			stroke: true,
@@ -20,9 +20,9 @@ export const FpsCounter: FC = () => {
 		const elapsedTime = clock.getElapsedTime()
 
 		if (frames.length && frameCount.current % 30 == 0) {
-			fpsCounter.current.text =
-				Math.round(1000 / ((elapsedTime - frames[0]) / frames.length)) +
-				" fps"
+			fpsCounter.current.text = Math.round(
+				1000 / ((elapsedTime - frames[0]) / frames.length),
+			)
 		}
 
 		frameCount.current++

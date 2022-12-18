@@ -13,9 +13,9 @@ import { Strokable } from "@typings/optionable/Strokable"
 import { OptionalArray } from "@typings/utils/OptionalArray"
 
 export interface TextOpts extends StandardOptions, Colorable, Strokable {
-	prefix?: string
-	text: string | number
-	suffix?: string
+	prefix?: string | number
+	text?: string | number
+	suffix?: string | number
 	maxWidth?: number
 	fontFamily?: string
 	fontSize?: number
@@ -65,7 +65,7 @@ export class Text extends RenderObject implements RenderObjectType {
 
 		// The width is the lowest number of the maxWidth and the render width
 		const params = [
-			this.tempCtx.measureText(this.text.toString()).width,
+			this.tempCtx.measureText(this.getText()).width,
 			this.maxWidth,
 		].filter((i): i is number => i !== undefined)
 
@@ -78,7 +78,11 @@ export class Text extends RenderObject implements RenderObjectType {
 	}
 
 	public getText(): string {
-		return this.prefix + this.text + this.suffix
+		return (
+			this.prefix.toString() +
+			this.text.toString() +
+			this.suffix.toString()
+		)
 	}
 
 	public render(ctx: CanvasRenderingContext2D, camera: Camera): void {
@@ -115,11 +119,11 @@ export class Text extends RenderObject implements RenderObjectType {
 		})
 	}
 
-	constructor(opts: TextOpts) {
+	constructor(opts: TextOpts = {}) {
 		super(opts)
 
 		this.prefix = opts.prefix ?? ""
-		this.text = opts.text
+		this.text = opts.text ?? ""
 		this.suffix = opts.suffix ?? ""
 		this.maxWidth = opts.maxWidth
 		this.color = opts.color ?? "white"
