@@ -15,8 +15,10 @@ const config = {
 	typescript: {
 		ignoreBuildErrors: true,
 	},
-
 	output: "standalone",
+	images: {
+		unoptimized: true,
+	},
 }
 
 module.exports = config
