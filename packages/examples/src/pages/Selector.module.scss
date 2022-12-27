@@ -1,9 +1,13 @@
 .wrapper {
 	display: flex;
 	height: 100%;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+	@media screen and (min-width: 1100px) {
+		flex-direction: row;
+	}
 
 	a {
 		color: white;

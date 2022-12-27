@@ -1,6 +1,6 @@
 import { PositionArray, PositionObject } from "@typings/optionable/Positionable"
 
-type PositionLikeArguments = PositionArray | [PositionObject] | []
+type PositionLikeArguments = [number] | PositionArray | [PositionObject] | []
 
 export class Position {
 	x = 0
@@ -24,6 +24,11 @@ export class Position {
 		} else if (args.length == 1 && typeof args[0] == "function") {
 			const data = args[0](this)
 			return this.parsePositionLike(...data)
+		} else if (args.length == 1 && typeof args[0] == "number") {
+			return {
+				x: args[0],
+				y: args[0],
+			}
 		}
 
 		return {
@@ -85,8 +90,22 @@ export class Position {
 			| [(state: Position) => PositionLikeArguments]
 	): Position {
 		const parsed = this.parsePositionLike(...args)
+
 		this.x = parsed.x
 		this.y = parsed.y
+
+		return this
+	}
+
+	public scale(
+		...args:
+			| PositionLikeArguments
+			| [(state: Position) => PositionLikeArguments]
+	): Position {
+		const parsed = this.parsePositionLike(...args)
+
+		this.x *= parsed.x
+		this.y *= parsed.y
 
 		return this
 	}
