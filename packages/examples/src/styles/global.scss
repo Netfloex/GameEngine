@@ -3,10 +3,12 @@ body {
 	background-color: #222;
 	color: white;
 	color-scheme: dark;
+	font-family: sans-serif;
 }
 
 canvas {
 	position: absolute;
 	// 	border: 10px solid #4caf50;
 	background-color: #333;
+	touch-action: none;
 }

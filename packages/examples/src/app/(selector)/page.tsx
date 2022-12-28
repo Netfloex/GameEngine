@@ -1,6 +1,5 @@
 import styles from "./Selector.module.scss"
 
-import { NextSeo } from "next-seo"
 import Image from "next/image"
 import Link from "next/link"
 import type { FC } from "react"
@@ -8,8 +7,6 @@ import type { FC } from "react"
 const Page: FC = () => {
 	return (
 		<>
-			<NextSeo title="Examples" />
-
 			<div className={styles.wrapper}>
 				<Link href={"/playground"}>
 					<div className={styles.card}>

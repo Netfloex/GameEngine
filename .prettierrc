@@ -9,7 +9,7 @@
 	"importOrder": [
 		".*scss$",
 		"^\\w+",
-		"^@components.*",
+		"^(@|\\./)components.*",
 		"^@ge/classes/.*$",
 		"^@hooks|@ge/hooks.*$",
 		"^(@lib)|(@utils)|(@server)$",

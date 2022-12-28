@@ -1,8 +1,8 @@
-import { FC, useRef } from "react"
+import { Bird } from "./Bird"
+import { Obstacle } from "./Obstacle"
+import { Score } from "./Score"
 
-import { Bird } from "@components/flappy/Bird"
-import { Obstacle } from "@components/flappy/Obstacle"
-import { Score } from "@components/flappy/Score"
+import { FC, useRef } from "react"
 
 const obstacleDistance = 600
 

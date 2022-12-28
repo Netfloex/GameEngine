@@ -1,6 +1,5 @@
 .wrapper {
 	display: flex;
-	height: 100%;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -29,6 +28,7 @@
 
 		h1 {
 			margin: 0;
+			margin-bottom: 0.2rem;
 		}
 
 		img {

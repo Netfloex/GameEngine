@@ -19,6 +19,9 @@ const config = {
 	images: {
 		unoptimized: true,
 	},
+	experimental: {
+		appDir: true,
+	},
 }
 
 module.exports = config

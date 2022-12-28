@@ -16,13 +16,18 @@
 		"allowJs": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"noEmit": false
+		"noEmit": false,
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
 	},
 	"references": [
 		{
 			"path": "../gameEngine"
 		}
 	],
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
 	"exclude": ["node_modules"]
 }
