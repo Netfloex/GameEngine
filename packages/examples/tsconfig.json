@@ -16,6 +16,7 @@
 		"allowJs": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
+		"skipLibCheck": true,
 		"noEmit": false,
 		"plugins": [
 			{

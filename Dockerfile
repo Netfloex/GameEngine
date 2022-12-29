@@ -25,11 +25,21 @@ COPY packages ./packages
 RUN echo '{"presets":["next/babel"]}' > .babelrc
 
 RUN yarn --cwd packages/gameEngine build
-RUN yarn --cwd packages/examples build && yarn --cwd packages/examples export
+RUN yarn --cwd packages/examples build 
 
 
-FROM nginx:stable-alpine AS runner
+FROM $NODE_IMAGE AS runner
+
 WORKDIR /app
 
+ENV NODE_ENV production
 
-COPY --from=builder /app/packages/examples/out /usr/share/nginx/html
+COPY --from=builder /app/packages/examples/.next/standalone/packages/examples ./
+COPY --from=builder /app/packages/examples/.next/standalone ./
+RUN rm -r /app/packages
+COPY --from=builder /app/packages/examples/.next/static ./.next/static
+COPY --from=builder /app/packages/examples/public ./public
+
+EXPOSE 3000
+
+CMD ["node", "server"]
