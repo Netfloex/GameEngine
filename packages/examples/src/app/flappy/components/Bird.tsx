@@ -1,4 +1,11 @@
-import { Circle, Position, Render, useFrame, useScene } from "gameengine"
+import {
+	Circle,
+	Picture,
+	Position,
+	Render,
+	useFrame,
+	useScene,
+} from "gameengine"
 import throttle from "lodash.throttle"
 import {
 	FC,
@@ -20,6 +27,7 @@ const birdStats = {
 	gravity: new Position(0, 0.7),
 	jumpVelocityY: -13,
 	xOffset: 300,
+	size: 60,
 }
 
 export const Bird: FC<{
@@ -29,10 +37,15 @@ export const Bird: FC<{
 	const scene = useScene()
 
 	const bird = useRef(
-		new Circle({
-			radius: 10,
-			color: "#4caf50",
+		new Picture({
+			src: "/flappy/bird.png",
 			position: birdStats.startPosition.clone(),
+		}),
+	)
+	const birdHitbox = useRef(
+		new Circle({
+			radius: birdStats.size / 2,
+			position: bird.current.position,
 		}),
 	)
 
@@ -68,6 +81,14 @@ export const Bird: FC<{
 	useFrame(
 		useCallback(
 			(scene) => {
+				const aspectRatio =
+					bird.current.image.width / bird.current.image.height
+
+				bird.current.size.set(
+					birdStats.size * aspectRatio,
+					birdStats.size,
+				)
+
 				const deltaTime = scene.clock.getDelta() * (60 / 1000)
 
 				birdData.current.velocity.add(
@@ -85,6 +106,8 @@ export const Bird: FC<{
 					birdStats.maxVelocity,
 				)
 
+				bird.current.rotation = birdData.current.velocity.y / 40
+
 				if (
 					bird.current.position.y > scene.height ||
 					bird.current.position.y < 0
@@ -93,7 +116,7 @@ export const Bird: FC<{
 				}
 
 				if (
-					bird.current.isCollidingWith(
+					birdHitbox.current.isCollidingWith(
 						scene.objects.filter(({ name }) => name == "obstacle"),
 					)
 				) {
@@ -115,5 +138,10 @@ export const Bird: FC<{
 		),
 	)
 
-	return <Render object={bird} />
+	return (
+		<>
+			<Render object={bird} />
+			{/* <Render object={birdHitbox} /> */}
+		</>
+	)
 }

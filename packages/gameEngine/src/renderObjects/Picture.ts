@@ -23,7 +23,7 @@ export class Picture
 	public size: Size
 	public type = "picture" as const
 
-	private image = new Image()
+	public image = new Image()
 
 	public path: Path2D | undefined
 	private oldSize: Size = new Size()

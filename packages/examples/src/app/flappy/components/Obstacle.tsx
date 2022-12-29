@@ -1,10 +1,11 @@
 import { Rectangle, Render, useScene } from "gameengine"
 import { FC, useRef } from "react"
 
+const height = 200
+
 export const Obstacle: FC<{ x: number }> = ({ x }) => {
 	const scene = useScene()
 
-	const height = 200
 	const startY = Math.floor(Math.random() * (innerHeight - 75 - height)) + 75
 
 	const obstacleTop = useRef(
